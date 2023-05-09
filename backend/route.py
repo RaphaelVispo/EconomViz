@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 import numpy as np
 import pandas as pd
-from backend.json_model import JSON_Model
+from json_model import JSON_Model
 from  data_model import Data
 
 router  = APIRouter()
