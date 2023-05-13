@@ -1,7 +1,8 @@
 import React , {useState, useEffect} from 'react'
 import Plot from 'react-plotly.js';
+import { InlineMath, BlockMath } from 'react-katex';
 import {solve_linear_regression} from './linear_regression'
-
+import 'katex/dist/katex.min.css';
 
 function App(){
   const [data_Supply, setData_Supply] = useState({
@@ -45,6 +46,11 @@ function App(){
 
   return(
     <div>
+      <div>
+        <BlockMath>{`y = mx + b`}
+        </BlockMath>
+      </div>
+      <div>
       <Plot
         data={[
 
@@ -81,6 +87,8 @@ function App(){
         ]}
         layout={{width: 1000, height: 1000}}
         ></Plot>
+      </div>
+
     </div>
   )
 }
