@@ -3,7 +3,7 @@ import Plot from 'react-plotly.js';
 import { InlineMath, BlockMath } from 'react-katex';
 import {solve_linear_regression} from './linear_regression'
 import 'katex/dist/katex.min.css';
-import {Container, Navbar, Nav, Row, Col} from 'react-bootstrap';
+import {Container, Navbar, Nav, Row, Col, Card, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -62,9 +62,11 @@ function App(){
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    <Container id = "information">
-      <Row>
-        <Col>      
+    <div >
+
+    <Container id = "information" fluid = "true" >
+      <Row >
+        <Col md = {{order :6}}>      
         <Plot
           data={[
 
@@ -101,7 +103,7 @@ function App(){
           ]}
           layout={{
             
-              width: 1000,
+              width: 950,
               height: 800,
               margin: {
                 l: 50, // left margin
@@ -112,14 +114,35 @@ function App(){
               }}}
           ></Plot>
         </Col>
-        <Col>      
-        <div>
-          <BlockMath>{`y = mx + b`}
-          </BlockMath>
-        </div>
-      </Col>
+        <Col  md = {{order:1}}>  
+       
+    
+          <Card id="info">
+            <Card.Header>
+              <Nav variant="pills" defaultActiveKey="#first">
+                <Nav.Item>
+                  <Nav.Link href="#first">Matrix</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link href="#link">Law of Demand</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                <Nav.Link href="#link">Law of Supply</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Card.Header>
+            <Card.Body>
+              <Card.Text>
+                <Card.Body>Law of Demand</Card.Body>
+              </Card.Text>
+
+            </Card.Body>
+          </Card>
+        </Col>
       </Row>
     </Container>
+    </div>
+
     </div>
   )
 }
