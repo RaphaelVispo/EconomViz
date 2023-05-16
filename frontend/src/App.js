@@ -6,6 +6,7 @@ import 'katex/dist/katex.min.css';
 import {Container, Navbar, Nav, Row, Col, Card, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { Card_information } from './Components';
 
 
 function App(){
@@ -46,6 +47,7 @@ function App(){
   useEffect(() => {
     console.log("demand:", data_Demand);
   }, [data_Demand]);
+
 
 
   return(
@@ -116,28 +118,11 @@ function App(){
         </Col>
         <Col  md = {{order:1}}>  
        
-    
-          <Card id="info">
-            <Card.Header>
-              <Nav variant="pills" defaultActiveKey="#first">
-                <Nav.Item>
-                  <Nav.Link href="#first">Matrix</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link href="#link">Law of Demand</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                <Nav.Link href="#link">Law of Supply</Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Card.Header>
-            <Card.Body>
-              <Card.Text>
-                <Card.Body>Law of Demand</Card.Body>
-              </Card.Text>
 
-            </Card.Body>
-          </Card>
+        <Card_information />
+
+
+
         </Col>
       </Row>
     </Container>
@@ -146,5 +131,6 @@ function App(){
     </div>
   )
 }
+
 
 export default App
