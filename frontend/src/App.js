@@ -1,6 +1,5 @@
 import React , {useState, useEffect} from 'react'
 import Plot from 'react-plotly.js';
-import { InlineMath, BlockMath } from 'react-katex';
 import {solve_linear_regression} from './linear_regression'
 import 'katex/dist/katex.min.css';
 import {Container, Navbar, Nav, Row, Col, Card, Button} from 'react-bootstrap';
