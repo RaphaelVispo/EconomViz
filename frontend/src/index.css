@@ -1,0 +1,12 @@
+#information {
+    margin-top: 20px; /* set the top margin to 20px */
+    margin-bottom: 20px; /* set the bottom margin to 20px */
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 0; /* remove the left padding */
+    padding-right: 0; /* remove the right padding */
+
+  }
+
+
+  .katex { font-size: 1.5em; }
