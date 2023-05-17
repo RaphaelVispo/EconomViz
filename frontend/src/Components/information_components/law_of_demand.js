@@ -1,10 +1,13 @@
 import { InlineMath, BlockMath } from 'react-katex';
-
+import { Profit_Max_Demand } from './profit_max_demand';
 import React from 'react'
 import {Container, Navbar, Nav, Row, Col, Card, Button} from 'react-bootstrap';
 
 
-export function Law_Of_Demand() {
+export function Law_Of_Demand(props) {
+    const { data_slider, adjust_slider, data_Demand} =  props
+
+
     return (
         <Container style={{ padding: '30px' }}>
             <br/>
@@ -15,10 +18,15 @@ export function Law_Of_Demand() {
 
             <h5> Demand Equation</h5>
             <p> Quantity demanded <InlineMath math="(Qd)"/> if a function of the price <InlineMath math="(P)"/> </p>
-
+            
             <BlockMath> Qd = a-bP</BlockMath>
 
+            <Profit_Max_Demand
+                data_Demand = {data_Demand}
 
+                data_slider = {data_slider}
+                adjust_slider = {adjust_slider}
+             />
         </Container>
     );
   }

@@ -21,7 +21,7 @@ async def linear_regression(data: Data)-> JSONResponse:
 
     b, a = np.polyfit(df.X, df.y, deg=1)
 
-    x_range = np.linspace(0, len(df.X), 100)
+    x_range = np.linspace(0, len(df.X), 101)
     y_range = a + b* x_range 
 
     me = JSON_Model(x_range, y_range)
