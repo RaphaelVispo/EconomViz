@@ -35,24 +35,30 @@ function App(){
 
   const [data_slider, setData_slider] = useState(0)
 
+  const [slope_slider, setSlope_slider] = useState(0)
+
   
   useEffect(() => {
     solve_linear_regression(setData_Supply, data_Supply);
-    solve_linear_regression(setdata_Demand, data_Demand);
+    solve_linear_regression(setdata_Demand, data_Demand, slope_slider);
 
-  }, []);
+  }, [slope_slider]);
   
-  // useEffect(() => {
-  //   console.log("supply:", data_Supply);
-  // }, [data_Supply]);
+  useEffect(() => {
+    console.log("slope_slider:", slope_slider);
+  }, [slope_slider]);
 
-  // useEffect(() => {
-  //   console.log("demand:", data_Demand);
-  // }, [data_Demand]);
+  useEffect(() => {
+    console.log("demand:", data_Demand);
+  }, [data_Demand]);
 
   const adjust_slider = (value) => {
       setData_slider(value)
   };
+
+  const adjust_slope_slider = (value) => {
+    setSlope_slider(value)
+};
 
 
 
@@ -73,7 +79,9 @@ function App(){
           <Card_information
               data_Demand = {data_Demand}
               data_slider = {data_slider}
+              slope_slider = {slope_slider}
               adjust_slider = {adjust_slider}
+              adjust_slope_slider = {adjust_slope_slider}
           />
         </Col>
       </Row>

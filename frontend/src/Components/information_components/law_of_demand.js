@@ -1,11 +1,13 @@
 import { InlineMath, BlockMath } from 'react-katex';
 import { Profit_Max_Demand } from './profit_max_demand';
 import React from 'react'
+
 import {Container, Navbar, Nav, Row, Col, Card, Button} from 'react-bootstrap';
+import { Elasticity_Demand } from './elasticity_Demand';
 
 
 export function Law_Of_Demand(props) {
-    const { data_slider, adjust_slider, data_Demand} =  props
+    const { data_slider, adjust_slider, data_Demand, adjust_slope_slider, slope_slider} =  props
 
 
     return (
@@ -27,6 +29,13 @@ export function Law_Of_Demand(props) {
                 data_slider = {data_slider}
                 adjust_slider = {adjust_slider}
              />
+            <Elasticity_Demand 
+                slope_slider = {slope_slider}
+                data_Demand = {data_Demand}
+                adjust_slope_slider = {adjust_slope_slider}
+                data_slider = {data_slider}
+            />
+             
         </Container>
     );
   }
