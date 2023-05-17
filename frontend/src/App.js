@@ -1,13 +1,13 @@
 import React , {useState, useEffect} from 'react'
-import Plot from 'react-plotly.js';
 import {solve_linear_regression} from './linear_regression'
 import 'katex/dist/katex.min.css';
 import {Container, Navbar, Nav, Row, Col, Card, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-slider/dist/css/bootstrap-slider.css"
+import { Plot_Law } from './Components/plot_components/plot';
 
 
-import { Card_information } from './Components';
+import { Card_information } from './Components/information_components';
 
 
 function App(){
@@ -76,83 +76,15 @@ function App(){
     <Container id = "information" fluid = "true" >
       <Row >
         <Col md = {{order :6}}>      
-        <Plot
-          data={[
-
-            {
-              x: data_Supply.regression.X  ,
-              y: data_Supply.regression.y ,
-              type: 'line',
-              marker: {color: 'red'},
-              line: { width: 5} ,
-              name: 'Supply Regression',
-            },
-            {
-              x: data_Demand.regression.X  ,
-              y: data_Demand.regression.y ,
-              type: 'line',
-              marker: {color: 'blue'},
-              line: { width: 5} ,
-              name: 'Demand Regression',
-            },
-            // {type: 'scatter',
-            //   x: data_Supply.original.X,
-            //   y: data_Supply.original.y,
-            //   mode: 'markers',
-            //   marker: {opacity: 0.5},
-            //   name: 'Supply Data',
-            // },
-            // {type: 'scatter',
-            //   x: data_Demand.original.X,
-            //   y: data_Demand.original.y,
-            //   mode: 'markers',
-            //   marker: {opacity: 0.5},
-            //   name: 'Demand Data',
-            // },
-          ]}
-          layout={{
-            
-              width: 950,
-              height: 800,
-              margin: {
-                l: 50, // left margin
-                r: 50, // right margin
-                t: 50, // top margin
-                b: 50, // bottom margin
-                pad: 4 // padding between plot area and the margin
-              },
-              xaxis: {
-                rangemode: 'tozero', 
-              },
-              yaxis: {
-                rangemode: 'tozero', 
-              },
-              shapes : [
-                {
-
-                  type: 'rect',
-                  xref: 'x',
-                  yref: 'y',
-                  x0: 0,
-                  y0: 0,
-                  x1: data_Demand.regression.X[data_slider],
-                  y1: data_Demand.regression.y[data_slider],
-                  fillcolor: '#adadad',
-                  opacity: 0.5,
-      
-                  line: {
-      
-                      width: 0
-      
-                  }
-              }
-              ]
-              }}
-          ></Plot>
+          < Plot_Law 
+          data_Demand = {data_Demand} 
+          data_Supply = {data_Supply} 
+          data_slider = {data_slider} />
         </Col>
         <Col  md = {{order:1}}>  
 
         <Card_information
+            data_Demand = {data_Demand}
             data_slider = {data_slider}
             adjust_slider = {adjust_slider}
         />

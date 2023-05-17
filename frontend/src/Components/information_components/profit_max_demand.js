@@ -1,12 +1,23 @@
 
+import { InlineMath, BlockMath } from 'react-katex';
 
 import ReactSlider from "react-slider";
 
 
 export function Profit_Max_Demand (props) {
-    const { data_slider, adjust_slider} =  props
+    const { data_slider, adjust_slider, data_Demand} =  props
+
+    const Total = data_Demand.regression.X[data_slider]*data_Demand.regression.y[data_slider]
 
     return (
+    <>
+
+        <h5> Profit Equation</h5>
+        <BlockMath>T ~= ~ P \times Q</BlockMath>
+        <BlockMath
+             math={`T = ${Total.toFixed(2)}`}
+        />
+
         <ReactSlider
         className="customSlider"
         thumbClassName="customSlider-thumb"
@@ -20,6 +31,9 @@ export function Profit_Max_Demand (props) {
         onChange={(value) => adjust_slider(value)}
 
     />
+    
+    </>
+
     )
 }
 

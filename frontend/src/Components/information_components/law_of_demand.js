@@ -5,7 +5,7 @@ import {Container, Navbar, Nav, Row, Col, Card, Button} from 'react-bootstrap';
 
 
 export function Law_Of_Demand(props) {
-    const { data_slider, adjust_slider} =  props
+    const { data_slider, adjust_slider, data_Demand} =  props
 
 
     return (
@@ -18,10 +18,12 @@ export function Law_Of_Demand(props) {
 
             <h5> Demand Equation</h5>
             <p> Quantity demanded <InlineMath math="(Qd)"/> if a function of the price <InlineMath math="(P)"/> </p>
-
+            
             <BlockMath> Qd = a-bP</BlockMath>
 
             <Profit_Max_Demand
+                data_Demand = {data_Demand}
+
                 data_slider = {data_slider}
                 adjust_slider = {adjust_slider}
              />
