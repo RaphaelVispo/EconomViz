@@ -5,7 +5,6 @@ import 'katex/dist/katex.min.css';
 import {Container, Navbar, Nav, Row, Col, Card, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-slider/dist/css/bootstrap-slider.css"
-import ReactSlider from "react-slider";
 
 
 import { Card_information } from './Components';
@@ -44,18 +43,19 @@ function App(){
 
   }, []);
   
-  useEffect(() => {
-    console.log("supply:", data_Supply);
-  }, [data_Supply]);
+  // useEffect(() => {
+  //   console.log("supply:", data_Supply);
+  // }, [data_Supply]);
 
-  useEffect(() => {
-    console.log("demand:", data_Demand);
-  }, [data_Demand]);
+  // useEffect(() => {
+  //   console.log("demand:", data_Demand);
+  // }, [data_Demand]);
 
-
-  const increment = (value) => {
-    setData_slider(value)
+  const adjust_slider = (value) => {
+      setData_slider(value)
   };
+
+
 
   return(
     <div>
@@ -137,7 +137,7 @@ function App(){
                   y0: 0,
                   x1: data_Demand.regression.X[data_slider],
                   y1: data_Demand.regression.y[data_slider],
-                  fillcolor: '#d3d3d3',
+                  fillcolor: '#adadad',
                   opacity: 0.5,
       
                   line: {
@@ -152,22 +152,13 @@ function App(){
         </Col>
         <Col  md = {{order:1}}>  
 
-        <Card_information />
-
-
-        <ReactSlider
-          className="customSlider"
-          thumbClassName="customSlider-thumb"
-          trackClassName="customSlider-track"
-          markClassName="customSlider-mark"
-          marks={20}
-          min={0}
-          max={100}
-          defaultValue={0}
-          value={data_slider}
-          onChange={(value) => increment(value)}
-         
+        <Card_information
+            data_slider = {data_slider}
+            adjust_slider = {adjust_slider}
         />
+
+
+
         </Col>
       </Row>
     </Container>
@@ -180,31 +171,3 @@ function App(){
 
 export default App
 
-
-// 
-
-//shapes: [
-//   {
-//     type: 'line',
-//     x0: 1,
-//     x1: 1,
-//     y0: 1, // Set the desired range for the y-axis
-//     y1: 1, // Set the desired range for the y-axis
-//     line: {
-//       color: 'black',
-//       width: 2,
-//       dash: 'dash',
-//     },
-//   },
-// ],
-// annotations: [
-//   {
-//     x: 1,
-//     y: 1,
-//     text: 'Pointer Text',
-//     showarrow: true,
-//     arrowhead: 7,
-//     ax: -50,
-//     ay: -50,
-//   },
-// ]
