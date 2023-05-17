@@ -4,6 +4,9 @@ import {solve_linear_regression} from './linear_regression'
 import 'katex/dist/katex.min.css';
 import {Container, Navbar, Nav, Row, Col, Card, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap-slider/dist/css/bootstrap-slider.css"
+import ReactSlider from "react-slider";
+
 
 import { Card_information } from './Components';
 
@@ -15,8 +18,8 @@ function App(){
       y: [0, 1, 4, 9, 16],
     },
     regression: {
-      X: [0, 1, 2, 3, 4],
-      y: [0, 1, 4, 9, 16],      
+      X: [],
+      y: [],      
     }
 
   });
@@ -26,11 +29,13 @@ function App(){
       y: [16, 9, 4, 1, 0]
     },
     regression: {
-      X: [0, 1, 2, 3, 4],
-      y: [0, 1, 4, 9, 16],      
+      X: [],
+      y: [],      
     }
 
   });
+
+  const [data_slider, setData_slider] = useState(0)
 
   
   useEffect(() => {
@@ -48,6 +53,9 @@ function App(){
   }, [data_Demand]);
 
 
+  const increment = (value) => {
+    setData_slider(value)
+  };
 
   return(
     <div>
@@ -87,20 +95,20 @@ function App(){
               line: { width: 5} ,
               name: 'Demand Regression',
             },
-            {type: 'scatter',
-              x: data_Supply.original.X,
-              y: data_Supply.original.y,
-              mode: 'markers',
-              marker: {opacity: 0.5},
-              name: 'Supply Data',
-            },
-            {type: 'scatter',
-              x: data_Demand.original.X,
-              y: data_Demand.original.y,
-              mode: 'markers',
-              marker: {opacity: 0.5},
-              name: 'Demand Data',
-            },
+            // {type: 'scatter',
+            //   x: data_Supply.original.X,
+            //   y: data_Supply.original.y,
+            //   mode: 'markers',
+            //   marker: {opacity: 0.5},
+            //   name: 'Supply Data',
+            // },
+            // {type: 'scatter',
+            //   x: data_Demand.original.X,
+            //   y: data_Demand.original.y,
+            //   mode: 'markers',
+            //   marker: {opacity: 0.5},
+            //   name: 'Demand Data',
+            // },
           ]}
           layout={{
             
@@ -112,16 +120,54 @@ function App(){
                 t: 50, // top margin
                 b: 50, // bottom margin
                 pad: 4 // padding between plot area and the margin
-              }}}
+              },
+              xaxis: {
+                rangemode: 'tozero', 
+              },
+              yaxis: {
+                rangemode: 'tozero', 
+              },
+              shapes : [
+                {
+
+                  type: 'rect',
+                  xref: 'x',
+                  yref: 'y',
+                  x0: 0,
+                  y0: 0,
+                  x1: data_Demand.regression.X[data_slider],
+                  y1: data_Demand.regression.y[data_slider],
+                  fillcolor: '#d3d3d3',
+                  opacity: 0.5,
+      
+                  line: {
+      
+                      width: 0
+      
+                  }
+              }
+              ]
+              }}
           ></Plot>
         </Col>
         <Col  md = {{order:1}}>  
-       
 
         <Card_information />
 
 
-
+        <ReactSlider
+          className="customSlider"
+          thumbClassName="customSlider-thumb"
+          trackClassName="customSlider-track"
+          markClassName="customSlider-mark"
+          marks={20}
+          min={0}
+          max={100}
+          defaultValue={0}
+          value={data_slider}
+          onChange={(value) => increment(value)}
+         
+        />
         </Col>
       </Row>
     </Container>
@@ -133,3 +179,32 @@ function App(){
 
 
 export default App
+
+
+// 
+
+//shapes: [
+//   {
+//     type: 'line',
+//     x0: 1,
+//     x1: 1,
+//     y0: 1, // Set the desired range for the y-axis
+//     y1: 1, // Set the desired range for the y-axis
+//     line: {
+//       color: 'black',
+//       width: 2,
+//       dash: 'dash',
+//     },
+//   },
+// ],
+// annotations: [
+//   {
+//     x: 1,
+//     y: 1,
+//     text: 'Pointer Text',
+//     showarrow: true,
+//     arrowhead: 7,
+//     ax: -50,
+//     ay: -50,
+//   },
+// ]
