@@ -5,9 +5,8 @@ import {Container, Navbar, Nav, Row, Col, Card, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-slider/dist/css/bootstrap-slider.css"
 import { Plot_Law } from './Components/plot_components/plot';
-
-
 import { Card_information } from './Components/information_components';
+import { NavBar_Main } from './Components/navbar/navbar';
 
 
 function App(){
@@ -60,18 +59,7 @@ function App(){
   return(
     <div>
 
-    <Navbar  bg="light"  expand="lg">
-      <Container>
-        <Navbar.Brand >EconomiViz</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link>ECON 11</Nav.Link>
-            </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-    <div >
+    <NavBar_Main />
 
     <Container id = "information" fluid = "true" >
       <Row >
@@ -82,19 +70,14 @@ function App(){
           data_slider = {data_slider} />
         </Col>
         <Col  md = {{order:1}}>  
-
-        <Card_information
-            data_Demand = {data_Demand}
-            data_slider = {data_slider}
-            adjust_slider = {adjust_slider}
-        />
-
-
-
+          <Card_information
+              data_Demand = {data_Demand}
+              data_slider = {data_slider}
+              adjust_slider = {adjust_slider}
+          />
         </Col>
       </Row>
     </Container>
-    </div>
 
     </div>
   )
