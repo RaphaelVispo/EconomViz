@@ -30,10 +30,12 @@ export function Law_Of_Demand(props) {
                 adjust_slider = {adjust_slider}
              />
             <Elasticity_Demand 
+                data_slider = {data_slider}
+                adjust_slider = {adjust_slider}
                 slope_slider = {slope_slider}
                 data_Demand = {data_Demand}
                 adjust_slope_slider = {adjust_slope_slider}
-                data_slider = {data_slider}
+
             />
              
         </Container>
