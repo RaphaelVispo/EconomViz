@@ -5,20 +5,17 @@ import ReactSlider from "react-slider";
 
 
 export function Elasticity_Demand (props) {
-    const { slope_slider, data_Demand, adjust_slope_slider, data_slider, adjust_slider } =  props
+    const { slope_slider, data_Demand, adjust_slope_slider, data_slider, adjust_slider ,shift_slider, adjust_shift_slider } =  props
 
-    const l  = 10
 
     const Q1 = parseFloat(data_Demand.regression.X[data_slider])
     const Q2 = parseFloat(data_Demand.regression.X[data_slider-1])
     const P1 = parseFloat(data_Demand.regression.y[data_slider])
     const P2 = parseFloat(data_Demand.regression.y[data_slider-1])
 
-    console.log(typeof(Q1))
 
     const elasticity = ((parseFloat(Q2)-parseFloat(Q1)) / (Q2+Q1))/((P2 - P1) /(P2 + P1)) 
-    console.log(`(Q2-Q1) = ${(Q2-Q1)} / (Q2+Q1)) = ${(Q2+Q1)}/((P2 - P1) = ${(P2 - P1)}/(P2 + P1) = ${(P2 + P1)}`)
-    // console.log(`(Q2-Q1)/ (Q2+Q1)) = ${(Q2-Q1)/(Q2+Q1)}/((P2 - P1) /(P2 + P1) = ${(P2 - P1)/(P2 + P1)}`)
+
 
 
     return (
@@ -45,6 +42,23 @@ export function Elasticity_Demand (props) {
         defaultValue={0}
         value={slope_slider}
         onChange={(value) => adjust_slope_slider(value)} />
+        <br/>
+        <br/>
+
+        <br/>
+        <p>shift </p>
+
+        <ReactSlider
+        className="customSlider"
+        thumbClassName="customSlider-thumb"
+        trackClassName="customSlider-track"
+        markClassName="customSlider-mark"
+        step={0.5}
+        min={-50}
+        max={50}
+        defaultValue={0}
+        value={shift_slider}
+        onChange={(value) => adjust_shift_slider(value)} />
 
         <br/>
         <br/>

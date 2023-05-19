@@ -4,4 +4,5 @@ class Data(BaseModel):
     X: list[int]
     y: list[int]
     slope: int = 0
+    shift: int = 0
 
