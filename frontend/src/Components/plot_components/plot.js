@@ -54,12 +54,12 @@ export function Plot_Law (props) {
         xaxis: {
         rangemode: 'tozero', 
         autotick: false,
-        range: [0, 5]
+        range: [0, 40]
         },
         yaxis: {
         rangemode: 'tozero', 
         autotick: false,
-        range: [0, 16]
+        range: [0, 40]
         },
         shapes : [
         {

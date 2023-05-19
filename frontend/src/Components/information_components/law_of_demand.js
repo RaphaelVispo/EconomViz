@@ -7,7 +7,7 @@ import { Elasticity_Demand } from './elasticity_Demand';
 
 
 export function Law_Of_Demand(props) {
-    const { data_slider, adjust_slider, data_Demand, adjust_slope_slider, slope_slider} =  props
+    const { data_slider, adjust_slider, data_Demand, adjust_slope_slider, slope_slider ,shift_slider, adjust_shift_slider} =  props
 
 
     return (
@@ -30,6 +30,8 @@ export function Law_Of_Demand(props) {
                 adjust_slider = {adjust_slider}
              />
             <Elasticity_Demand 
+                shift_slider = {shift_slider}
+                adjust_shift_slider  = {adjust_shift_slider}
                 data_slider = {data_slider}
                 adjust_slider = {adjust_slider}
                 slope_slider = {slope_slider}

@@ -12,8 +12,8 @@ import { NavBar_Main } from './Components/navbar/navbar';
 function App(){
   const [data_Supply, setData_Supply] = useState({
     original: {
-      X: [0, 1, 2, 3, 4],
-      y: [0, 1, 4, 9, 16],
+      X: [0, 10, 20, 30, 40],
+      y: [0, 10, 20, 30, 40],
     },
     regression: {
       X: [],
@@ -23,8 +23,8 @@ function App(){
   });
   const [data_Demand, setdata_Demand] = useState({
     original: {
-      X: [0, 1, 2, 3, 4],
-      y: [16, 9, 4, 1, 0]
+      X: [0, 10, 20, 30, 40],
+      y: [40, 30, 20, 10, 0]
     },
     regression: {
       X: [],
@@ -37,20 +37,18 @@ function App(){
 
   const [slope_slider, setSlope_slider] = useState(0)
 
+  const [shift_slider, setShift_slider] = useState(0)
+
   
   useEffect(() => {
     solve_linear_regression(setData_Supply, data_Supply);
-    solve_linear_regression(setdata_Demand, data_Demand, slope_slider);
+    solve_linear_regression(setdata_Demand, data_Demand, slope_slider, shift_slider);
 
-  }, [slope_slider]);
-  
-  useEffect(() => {
-    console.log("slope_slider:", slope_slider);
-  }, [slope_slider]);
+  }, [slope_slider, shift_slider]);
 
   useEffect(() => {
-    console.log("demand:", data_Demand);
-  }, [data_Demand]);
+    console.log(data_Demand)
+  })
 
   const adjust_slider = (value) => {
       setData_slider(value)
@@ -58,8 +56,12 @@ function App(){
 
   const adjust_slope_slider = (value) => {
     setSlope_slider(value)
-};
+  };
 
+
+  const adjust_shift_slider = (value) => {
+    setShift_slider(value)
+  };
 
 
   return(
@@ -77,6 +79,8 @@ function App(){
         </Col>
         <Col  md = {{order:1}}>  
           <Card_information
+              shift_slider = {shift_slider}
+              adjust_shift_slider  = {adjust_shift_slider}
               data_Demand = {data_Demand}
               data_slider = {data_slider}
               slope_slider = {slope_slider}
