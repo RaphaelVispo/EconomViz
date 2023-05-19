@@ -2,7 +2,7 @@
 
 const solve_linear_regression = async (setData, data, slope) => {
     data.original ["slope"] = slope
-    console.log(data.original)
+
     const res = await fetch("/api/linear_regression", {
       method: "POST",
       headers: {
