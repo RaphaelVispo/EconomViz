@@ -7,7 +7,9 @@ import ReactSlider from "react-slider";
 export function Profit_Max_Demand (props) {
     const { data_slider, adjust_slider, data_Demand} =  props
 
-    const Total = data_Demand.regression.X[data_slider]*data_Demand.regression.y[data_slider]
+    const demand_Regression_Qd = data_Demand.regression.X[data_slider]
+    const demand_Regression_P = data_Demand.regression.y[data_slider]
+    const Total = demand_Regression_Qd*demand_Regression_P
 
     return (
     <>
@@ -15,7 +17,7 @@ export function Profit_Max_Demand (props) {
         <h5> Profit Equation</h5>
         <BlockMath>T ~= ~ P \times Q</BlockMath>
         <BlockMath
-             math={`T = ${Total.toFixed(2)}`}
+             math={`T =${parseFloat(demand_Regression_P).toFixed(2)} ~\\times~ ${parseFloat(demand_Regression_Qd).toFixed(2)} ~= ~${Total.toFixed(2)}`}
         />
 
         <ReactSlider

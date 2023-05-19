@@ -53,9 +53,13 @@ export function Plot_Law (props) {
         },
         xaxis: {
         rangemode: 'tozero', 
+        autotick: false,
+        range: [0, 5]
         },
         yaxis: {
         rangemode: 'tozero', 
+        autotick: false,
+        range: [0, 16]
         },
         shapes : [
         {

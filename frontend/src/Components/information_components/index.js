@@ -12,7 +12,7 @@ import {Law_of_Supply} from "./law_of_supply";
 
 
 export function Card_information(props) {
-    const { data_slider, adjust_slider, data_Demand} =  props
+    const { data_slider, adjust_slider, data_Demand, adjust_slope_slider, slope_slider} =  props
 
     return (
         <Card id="info">
@@ -32,9 +32,11 @@ export function Card_information(props) {
         <BrowserRouter>
         <Routes>
         <Route path="/law_of_demand" element={<Law_Of_Demand
+                    slope_slider = {slope_slider}
                     data_Demand = {data_Demand}
                     data_slider = {data_slider}
                     adjust_slider = {adjust_slider}
+                    adjust_slope_slider = {adjust_slope_slider}
         />} />
         <Route path="/law_of_supply" element={<Law_of_Supply />} />
         </Routes>
