@@ -21,6 +21,7 @@ app.include_router(
 )
 
 origins = [
+    "https://prompt-flame-production.up.railway.app/"
     "http://localhost:3000",
 ]
 app.add_middleware(
