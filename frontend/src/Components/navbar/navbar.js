@@ -6,7 +6,7 @@ export function NavBar_Main (){
         <>
             <Navbar  bg="light"  expand="lg">
             <Container>
-                <Navbar.Brand >EconomiViz</Navbar.Brand>
+                <Navbar.Brand >EconomViz</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
