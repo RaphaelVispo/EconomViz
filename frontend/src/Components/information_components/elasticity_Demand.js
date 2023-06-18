@@ -37,7 +37,7 @@ export function Elasticity_Demand (props) {
         trackClassName="customSlider-track"
         markClassName="customSlider-mark"
         marks={20}
-        min={-50}
+        min={-100}
         max={100}
         defaultValue={0}
         value={slope_slider}
@@ -54,8 +54,8 @@ export function Elasticity_Demand (props) {
         trackClassName="customSlider-track"
         markClassName="customSlider-mark"
         step={0.5}
-        min={-50}
-        max={50}
+        min={-100}
+        max={100}
         defaultValue={0}
         value={shift_slider}
         onChange={(value) => adjust_shift_slider(value)} />

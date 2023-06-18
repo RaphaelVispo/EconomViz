@@ -28,7 +28,7 @@ async def linear_regression(data: Data)-> JSONResponse:
     # Rotation of the line if slope is given
     point = (x_range, y_range)
     origin = (x_range[50], y_range[50]) # getting the midpoint as the origin
-    x_range_slope , y_range_slope = rotate(origin, point, math.radians(data.slope))
+    x_range_slope , y_range_slope = rotate(origin, point, math.radians(data.slope*0.5))
 
     x_range_slope+= data.shift
 
