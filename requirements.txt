@@ -1,6 +1,0 @@
-numpy
-pandas
-fastapi
-uvicorn
-plotly-express
-plotly
