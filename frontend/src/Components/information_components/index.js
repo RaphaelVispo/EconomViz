@@ -1,11 +1,6 @@
 
 import React, { useState } from 'react';
 import {Nav, Card} from 'react-bootstrap';
-import {
-    BrowserRouter,
-    Routes,
-    Route
-  } from "react-router-dom";
 import {Law_Of_Demand} from "./law_of_demand";
 import {Law_of_Supply} from "./law_of_supply";
 import { Matrix_Input } from '../matrix_input/matrix_input';
