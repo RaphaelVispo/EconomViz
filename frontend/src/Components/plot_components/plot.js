@@ -1,8 +1,34 @@
+import React, { useEffect, useState } from 'react';
 import Plot from 'react-plotly.js';
 
 
 export function Plot_Law (props) {
     const {data_Supply, data_Demand, data_slider} = props
+
+    const [plotWidth, setPlotWidth] = useState(0);
+
+    // for first instanciation of the app 
+    // getting width of the 
+    useEffect(
+        () => {
+            if (document.body.clientWidth > 900){
+                setPlotWidth(900)
+                return;
+            }else {
+                setPlotWidth(document.body.clientWidth)
+            }
+
+        }, []
+    )
+
+    // id the window changes, rezise the graph
+    window.addEventListener("resize", function(event) {
+        if (document.body.clientWidth > 900){
+            setPlotWidth(900)
+            return;
+        }
+        setPlotWidth(document.body.clientWidth)
+    })
 
     return(
         <>
@@ -42,8 +68,8 @@ export function Plot_Law (props) {
     ]}
     layout={{
     
-        width: 950,
-        height: 800,
+        width: plotWidth,
+        height: plotWidth,
         margin: {
         l: 50, // left margin
         r: 50, // right margin
@@ -52,14 +78,20 @@ export function Plot_Law (props) {
         pad: 4 // padding between plot area and the margin
         },
         xaxis: {
+        title: 'Qd', 
         rangemode: 'tozero', 
-        autotick: false,
+        autotick: true,
         range: [0, 40]
         },
         yaxis: {
+        title: 'Price',
         rangemode: 'tozero', 
-        autotick: false,
+        autotick: true,
         range: [0, 40]
+        },
+        legend: {
+            y: -0.2, // Set the yanchor value to "bottom"
+            x: 0,
         },
         shapes : [
         {
@@ -79,7 +111,8 @@ export function Plot_Law (props) {
                 width: 0
 
             }
-        }
+        },
+
         ]
         }}
     ></Plot>       
