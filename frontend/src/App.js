@@ -1,7 +1,7 @@
 import React , {useState, useEffect} from 'react'
 import {solve_linear_regression} from './linear_regression'
 import 'katex/dist/katex.min.css';
-import {Container, Navbar, Nav, Row, Col, Card, Button} from 'react-bootstrap';
+import {Container, Row, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-slider/dist/css/bootstrap-slider.css"
 import { Plot_Law } from './Components/plot_components/plot';
