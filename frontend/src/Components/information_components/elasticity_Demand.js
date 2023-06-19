@@ -23,13 +23,13 @@ export function Elasticity_Demand (props) {
         <br/>
         <br/>
 
-        <h5> Elasticity of demand </h5>
-        <h6> Slope Slider</h6>
+        
+        <h5> Rotate</h5>
 
-
+{/* 
         <BlockMath
              math={`${slope_slider}`}
-        />
+        /> */}
 
         <ReactSlider
         className="customSlider"
@@ -43,10 +43,10 @@ export function Elasticity_Demand (props) {
         value={slope_slider}
         onChange={(value) => adjust_slope_slider(value)} />
         <br/>
-        <br/>
+
 
         <br/>
-        <p>shift </p>
+        <h5>Change in Demand (shift) </h5>
 
         <ReactSlider
         className="customSlider"
@@ -63,6 +63,11 @@ export function Elasticity_Demand (props) {
         <br/>
         <br/>
 
+        <h5> Own Price Elasticity of Demand </h5>
+        <h6> Using Arc Elasticity </h6>
+        <p> The own price elasticity of demend measures the responsiveness of
+            Quantity Demanded of a good to change in its own price
+        </p>
         <BlockMath
              math={`\\big | \\epsilon \\big |
               = \\left | \\frac{${Q2.toFixed(2)} - ${Q1.toFixed(2)}}{${Q2.toFixed(2)} + ${Q1.toFixed(2)}} \\div 

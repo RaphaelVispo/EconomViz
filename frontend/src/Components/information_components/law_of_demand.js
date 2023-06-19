@@ -11,12 +11,12 @@ export function Law_Of_Demand(props) {
 
 
     return (
-        <Container style={{ padding: '30px' }}>
-            <br/>
+        <Container style={{ padding: '1.5em' }}>
+
 
             <h2> Law of Demand</h2>
             <p> Demand refers to the various quatities of the a good or service that users/consumers are willing and able to buy.</p>
-            <br/>
+
 
             <h5> Demand Equation</h5>
             <p> Quantity demanded <InlineMath math="(Qd)"/> if a function of the price <InlineMath math="(P)"/> </p>
