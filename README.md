@@ -11,7 +11,7 @@ This app will help students understanding concept in Economics using graphical v
 2. then is to install the requirements
 
 ```bash
-$ pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 3. Running the main app
 
