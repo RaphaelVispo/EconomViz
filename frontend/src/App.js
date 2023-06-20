@@ -10,10 +10,11 @@ import { NavBar_Main } from './Components/navbar/navbar';
 
 
 export const usePlots = createContext()
+export const solvedRegeressionn = createContext()
 
 
 function App() {
-
+  const [solved, setSolved] = useState()
   const [plots, setPlots] = useState({
     demand: {
       original: {
@@ -44,7 +45,7 @@ function App() {
   useEffect(() => {
     console.log('plots', plots)
     // solve_linear_regression(setData_Supply, data_Supply);
-    solve_linear_regression(plots, setPlots);
+    solve_linear_regression(plots, setSolved);
 
   }, [plots]);
 
@@ -56,18 +57,21 @@ function App() {
   return (
     <div>
       <usePlots.Provider value={{ plots, setUsePlots }} >
-        <NavBar_Main />
+        <solvedRegeressionn.Provider value= {{solved, setSolved}}>
+          <NavBar_Main />
 
-        <Container id="information" fluid="true" >
-          <Row >
-            {/* <Col md={{ order: 6 }}>
+          <Container id="information" fluid="true" >
+            <Row >
+              {/* <Col md={{ order: 6 }}>
               < Plot_Law />
             </Col> */}
-            <Col md={{ order: 1 }}>
-              <Card_information />
-            </Col>
-          </Row>
-        </Container>
+              <Col md={{ order: 1 }}>
+                <Card_information />
+              </Col>
+            </Row>
+          </Container>
+        </solvedRegeressionn.Provider>
+
       </usePlots.Provider>
 
 
