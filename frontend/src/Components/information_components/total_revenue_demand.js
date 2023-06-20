@@ -1,14 +1,15 @@
 
 import { InlineMath, BlockMath } from 'react-katex';
-
+import { useContext } from 'react';
+import { solvedRegeression } from '../../App';
 import ReactSlider from "react-slider";
 
 
-export function Profit_Max_Demand (props) {
-    const { data_slider, adjust_slider, data_Demand} =  props
+export function Total_Revenue_Demand (props) {
+    const { solved, setSolved, trevenue, setTrevenue} = useContext(solvedRegeression);
 
-    const demand_Regression_Qd = data_Demand.regression.X[data_slider]
-    const demand_Regression_P = data_Demand.regression.y[data_slider]
+    const demand_Regression_Qd = solved.demand.regression.qd[trevenue]
+    const demand_Regression_P = solved.demand.regression.price[trevenue]
     const Total = demand_Regression_Qd*demand_Regression_P
 
     return (
@@ -29,8 +30,8 @@ export function Profit_Max_Demand (props) {
         min={0}
         max={100}
         defaultValue={0}
-        value={data_slider}
-        onChange={(value) => adjust_slider(value)}
+        value={trevenue}
+        onChange={(value) => setTrevenue(val => val=value)}
 
     />
     

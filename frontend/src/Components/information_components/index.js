@@ -8,7 +8,6 @@ import { Matrix_Input } from '../matrix_input/matrix_input';
 
 
 export function Card_information(props) {
-    const { data_slider, adjust_slider, data_Demand, adjust_slope_slider, slope_slider ,shift_slider, adjust_shift_slider} =  props
     const [info, setInfo] = useState("Matrix_Input")
 
     const change_info  = (value) => {
@@ -30,24 +29,9 @@ export function Card_information(props) {
             </Nav.Item>
         </Nav>
         </Card.Header>
-        {
-            (info === "Matrix_Input") && <Matrix_Input/>
-
-        }
-        {
-            (info ===  "Law_of_Demand") && <Law_Of_Demand
-                shift_slider = {shift_slider}
-                adjust_shift_slider  = {adjust_shift_slider}
-                slope_slider = {slope_slider}
-                data_Demand = {data_Demand}
-                data_slider = {data_slider}
-                adjust_slider = {adjust_slider}
-                adjust_slope_slider = {adjust_slope_slider}
-             />
-        }
-                {
-            (info ===  "Law_of_Supply") && <Law_of_Supply />
-        }
+        {(info === "Matrix_Input") && <Matrix_Input/>}
+        {(info ===  "Law_of_Demand") && <Law_Of_Demand/>}
+        {(info ===  "Law_of_Supply") && <Law_of_Supply />}
 
 
         </Card>
