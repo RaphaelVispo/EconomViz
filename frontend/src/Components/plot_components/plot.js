@@ -82,13 +82,13 @@ export function Plot_Law(props) {
                         title: 'Qd',
                         rangemode: 'tozero',
                         autotick: true,
-                        range: [0, Math.max(...solved.demand.regression.qd)]
+                        range: [0, Math.max(...solved.demand.original.qd)]
                     },
                     yaxis: {
                         title: 'Price',
                         rangemode: 'tozero',
                         autotick: true,
-                        range: [0, Math.max(...solved.demand.regression.price)]
+                        range: [0, Math.max(...solved.demand.original.price)]
                     },
                     legend: {
                         y: -0.2, // Set the yanchor value to "bottom"

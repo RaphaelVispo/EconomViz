@@ -23,7 +23,7 @@ export function Law_Of_Demand(props) {
             <BlockMath> Qd = a-bP</BlockMath>
 
             <Total_Revenue_Demand/>
-            {/* <Elasticity_Demand /> */}
+            <Elasticity_Demand />
              
         </Container>
     );

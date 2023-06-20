@@ -80,13 +80,16 @@ function App() {
   const setUsePlots = (input) => {
     setPlots(input)
   }
-  const [trevenue, setTrevenue ] = useState(0)
+  const [trevenue, setTrevenue] = useState(0)
+
 
 
   return (
     <div>
       <usePlots.Provider value={{ plots, setUsePlots }} >
-        <solvedRegeression.Provider value={{ solved, setSolved, trevenue, setTrevenue }}>
+        <solvedRegeression.Provider value={{
+          solved, setSolved, trevenue, setTrevenue
+        }}>
           <NavBar_Main />
 
           <Container id="information" fluid >
