@@ -7,7 +7,7 @@ const solve_linear_regression = async (setData, data, slope, shift) => {
     const evaluated_level = {}
 
 
-    const res = await fetch("https://economviz-production.up.railway.app/api/linear_regression", {
+    const res = await fetch("http://localhost:5000/api/linear_regression", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

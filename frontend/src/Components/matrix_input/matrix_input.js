@@ -1,9 +1,11 @@
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useEffect, createContext, useState, useContext} from 'react';
+import { config } from '../../Context/intro_Context';
+import { usePlots } from '../../App';
+
 
 export function Matrix_Input() {
 
-    const [demand_inputs, setDemand_inputs] = useState(1);
     const [DemandFields, setDemandFields] = useState([{
         id: 1,
 
@@ -12,6 +14,8 @@ export function Matrix_Input() {
         id: 1,
 
     }])
+    const {plots, setUsePlots}  = useContext(usePlots);
+
 
 
 
@@ -51,13 +55,24 @@ export function Matrix_Input() {
         setSupplyFields([...values])
     }
 
+    // submit function
+    const onSubmit = () => {
+        const plotting = config
+        plotting.demand.original.x = DemandFields.map(value => parseInt(value.qd));
+        plotting.demand.original.y = DemandFields.map(value => parseInt(value.price));
 
-    useEffect(
-        () => { console.log(DemandFields);
-        console.log(SupplyFields) },
-        [DemandFields, SupplyFields]
+        plotting.supply.original.x = SupplyFields.map(value => parseInt(value.qd));
+        plotting.supply.original.y = SupplyFields.map(value => parseInt(value.price));
 
-    )
+        console.log("config", plotting)
+        setUsePlots(val => plotting)
+
+    }
+
+    useEffect(() => {
+        console.log("plots", plots);
+      }, [plots]);
+
 
     return (
         <>
@@ -68,9 +83,9 @@ export function Matrix_Input() {
                     <Form.Group controlId="formField">
                         <Container className='my-2'>
                             <h3>Demand Points</h3>
-                            <Row className="m-1 d-flex align-items-center justify-content-center" fluid >
-                                <Col sm={4}><h5>x</h5></Col>
-                                <Col sm={5}><h5>y</h5></Col>
+                            <Row className="m-1 d-flex " fluid >
+                                <Col className='align-items-center justify-content-center' sm={4}><h5>Quantity Demanded</h5></Col>
+                                <Col className='d-flex  align-items-center justify-content-center' sm={4}><h5>Price</h5></Col>
                             </Row>
                             {
                                 DemandFields.map((field, i) => {
@@ -79,7 +94,7 @@ export function Matrix_Input() {
                                             <Col md className="m-1">
                                                 <Form.Control
                                                     value={field.x}
-                                                    name='x'
+                                                    name='qd'
                                                     onChange={e => handleChangeInputDemand(i, e)}
                                                     type="text" placeholder="Enter a value" />
                                             </Col>
@@ -87,7 +102,7 @@ export function Matrix_Input() {
                                             <Col md className="m-1">
                                                 <Form.Control
                                                     value={field.y}
-                                                    name='y'
+                                                    name='price'
                                                     onChange={e => handleChangeInputDemand(i, e)}
                                                     type="text" placeholder="Enter a value" />
                                             </Col>
@@ -110,9 +125,9 @@ export function Matrix_Input() {
 
 
                             <h3>Supply Points</h3>
-                            <Row className="m-1 d-flex align-items-center justify-content-center" fluid >
-                                <Col sm={4}><h5>x</h5></Col>
-                                <Col sm={5}><h5>y</h5></Col>
+                            <Row className="m-1 d-flex " fluid >
+                                <Col className='align-items-center justify-content-center' sm={4}><h5>Quantity Demanded</h5></Col>
+                                <Col className='d-flex  align-items-center justify-content-center' sm={4}><h5>Price</h5></Col>
                             </Row>
                             {
                                 SupplyFields.map((field, i) => {
@@ -121,7 +136,7 @@ export function Matrix_Input() {
                                             <Col md className="m-1">
                                                 <Form.Control
                                                     value={field.x}
-                                                    name='x'
+                                                    name='qd'
                                                     onChange={e => handleChangeInputSupply(i, e)}
                                                     type="text" placeholder="Enter a value" />
                                             </Col>
@@ -129,7 +144,7 @@ export function Matrix_Input() {
                                             <Col md className="m-1">
                                                 <Form.Control
                                                     value={field.y}
-                                                    name='y'
+                                                    name='price'
                                                     onChange={e => handleChangeInputSupply(i, e)}
                                                     type="text" placeholder="Enter a value" />
                                             </Col>
@@ -150,7 +165,7 @@ export function Matrix_Input() {
 
 
                     </Form.Group>
-                    <Button type="button" variant="success">Graph</Button>
+                    <Button type="button" variant="success" onClick={onSubmit}>Graph</Button>
                 </Container>
             </Form>
 
@@ -158,3 +173,13 @@ export function Matrix_Input() {
     )
 
 }
+
+export const Anotherfunction = () =>{
+    const {plots, setUsePlots}  = useContext(usePlots);
+  
+    return (
+      <Container>
+        <Button onClick={()=> {setUsePlots(val => !val)}}>{`$plots`}</Button>
+      </Container>
+    )
+  }
