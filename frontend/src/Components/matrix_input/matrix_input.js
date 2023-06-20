@@ -58,14 +58,14 @@ export function Matrix_Input() {
     // submit function
     const onSubmit = () => {
         const plotting = config
-        plotting.demand.original.x = DemandFields.map(value => parseInt(value.qd));
-        plotting.demand.original.y = DemandFields.map(value => parseInt(value.price));
+        plotting.demand.original.qd = DemandFields.map(value => parseInt(value.qd));
+        plotting.demand.original.price = DemandFields.map(value => parseInt(value.price));
 
-        plotting.supply.original.x = SupplyFields.map(value => parseInt(value.qd));
-        plotting.supply.original.y = SupplyFields.map(value => parseInt(value.price));
+        plotting.supply.original.qd = SupplyFields.map(value => parseInt(value.qd));
+        plotting.supply.original.price = SupplyFields.map(value => parseInt(value.price));
 
         console.log("config", plotting)
-        setUsePlots(val => plotting)
+        setUsePlots(plotting)
 
     }
 

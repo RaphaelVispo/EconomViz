@@ -4,19 +4,19 @@ from fastapi.responses import JSONResponse
 import numpy as np
 import pandas as pd
 from json_model import JSON_Model
-from  data_model import Data
+from  data_model import data
 import math
 
 router  = APIRouter()
 
 @router.post("/linear_regression")
-async def linear_regression(data: Data)-> JSONResponse: 
+async def linear_regression(data: data)-> JSONResponse: 
 
-    if (len(data.X) ==1 ):
-        return JSONResponse(content="The lenght should be greatert than 1", 
-                            status_code = 422)
-    
-    
+    # if (len(data.X) ==1 ):
+    #     return JSONResponse(content="The lenght should be greatert than 1", 
+    #                         status_code = 422)
+    print(data)
+    return JSONResponse(content = str(data), status_code = 200)
     
     df = pd.DataFrame(data = {"X":data.X,"y":data.y})
 

@@ -3,22 +3,22 @@ import { createContext } from "react";
 export const config = {
     demand: {
         original: {
-            x: [],
-            y: []
+            qd: [0, 10, 20, 30, 40],
+            price: [40, 30, 20, 10, 0]
         },
         regression: {
-            x: [],
-            y: []
+            qd: [],
+            price: []
         },
     },
     supply: {
         original: {
-            x: [],
-            y: []
+            qd: [0, 10, 20, 30, 40],
+            price: [0, 10, 20, 30, 40],
         },
         regression: {
-            x: [],
-            y: []
+            qd: [],
+            price: []
         },
     },
     slope: 0,
