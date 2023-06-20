@@ -10,11 +10,35 @@ import { NavBar_Main } from './Components/navbar/navbar';
 
 
 export const usePlots = createContext()
-export const solvedRegeressionn = createContext()
+export const solvedRegeression = createContext()
 
 
 function App() {
-  const [solved, setSolved] = useState()
+  const [solved, setSolved] = useState({
+    demand: {
+      original: {
+        qd: [0, 10, 20, 30, 40],
+        price: [40, 30, 20, 10, 0]
+      },
+      regression: {
+        qd: [],
+        price: []
+      },
+    },
+    supply: {
+      original: {
+        qd: [0, 10, 20, 30, 40],
+        price: [0, 10, 20, 30, 40],
+      },
+      regression: {
+        qd: [],
+        price: []
+      },
+    },
+    slope: 0,
+    shift: 0,
+
+  })
   const [plots, setPlots] = useState({
     demand: {
       original: {
@@ -49,28 +73,33 @@ function App() {
 
   }, [plots]);
 
+  useEffect(() => {
+    console.log("solved", solved)
+  }, [solved])
+
   const setUsePlots = (input) => {
     setPlots(input)
   }
+  const [trevenue, setTrevenue ] = useState(0)
 
 
   return (
     <div>
       <usePlots.Provider value={{ plots, setUsePlots }} >
-        <solvedRegeressionn.Provider value= {{solved, setSolved}}>
+        <solvedRegeression.Provider value={{ solved, setSolved, trevenue, setTrevenue }}>
           <NavBar_Main />
 
-          <Container id="information" fluid="true" >
+          <Container id="information" fluid >
             <Row >
-              {/* <Col md={{ order: 6 }}>
-              < Plot_Law />
-            </Col> */}
+              <Col md={{ order: 6 }}>
+                < Plot_Law />
+              </Col>
               <Col md={{ order: 1 }}>
                 <Card_information />
               </Col>
             </Row>
           </Container>
-        </solvedRegeressionn.Provider>
+        </solvedRegeression.Provider>
 
       </usePlots.Provider>
 

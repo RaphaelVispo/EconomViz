@@ -13,12 +13,14 @@ router  = APIRouter()
 async def linear_regression(data: data)-> JSONResponse: 
 
 
-    df = pd.DataFrame(data = {"qd":data.demand.original.qd,"price":data.demand.original.qd})
+    df = pd.DataFrame(data = {"qd":data.demand.original.qd,"price":data.demand.original.price})
 
     b, a = np.polyfit(df.qd, df.price, deg=1)
 
     qd_range = np.linspace(0, max(df.qd), 101)
+  
     price_range = a + b* qd_range 
+
 
     # Rotation of the line if slope is given
     point = (qd_range, price_range)
