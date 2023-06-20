@@ -1,5 +1,5 @@
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-import { useEffect, createContext, useState, useContext} from 'react';
+import { useEffect, createContext, useState, useContext } from 'react';
 import { config } from '../../Context/intro_Context';
 import { usePlots } from '../../App';
 
@@ -14,7 +14,7 @@ export function Matrix_Input() {
         id: 1,
 
     }])
-    const {plots, setUsePlots}  = useContext(usePlots);
+    const { plots, setUsePlots } = useContext(usePlots);
 
 
 
@@ -57,21 +57,30 @@ export function Matrix_Input() {
 
     // submit function
     const onSubmit = () => {
-        const plotting = config
-        plotting.demand.original.qd = DemandFields.map(value => parseInt(value.qd));
-        plotting.demand.original.price = DemandFields.map(value => parseInt(value.price));
 
-        plotting.supply.original.qd = SupplyFields.map(value => parseInt(value.qd));
-        plotting.supply.original.price = SupplyFields.map(value => parseInt(value.price));
-
-        console.log("config", plotting)
-        setUsePlots(plotting)
+        setUsePlots(plot => ({
+            ...plot,
+            demand: {
+                ...plot.demand,
+                original: {
+                    qd: DemandFields.map(value => parseInt(value.qd)),
+                    price: DemandFields.map(value => parseInt(value.price))
+                }
+            },
+            supply: {
+                ...plot.supply,
+                original: {
+                    qd: SupplyFields.map(value => parseInt(value.qd)),
+                    price: SupplyFields.map(value => parseInt(value.price))
+                }
+            }
+        }))
 
     }
 
     useEffect(() => {
         console.log("plots", plots);
-      }, [plots]);
+    }, [plots]);
 
 
     return (
@@ -79,7 +88,7 @@ export function Matrix_Input() {
 
             <Form >
                 <Container className='m-2'>
-                    
+
                     <Form.Group controlId="formField">
                         <Container className='my-2'>
                             <h3>Demand Points</h3>
@@ -174,12 +183,12 @@ export function Matrix_Input() {
 
 }
 
-export const Anotherfunction = () =>{
-    const {plots, setUsePlots}  = useContext(usePlots);
-  
+export const Anotherfunction = () => {
+    const { plots, setUsePlots } = useContext(usePlots);
+
     return (
-      <Container>
-        <Button onClick={()=> {setUsePlots(val => !val)}}>{`$plots`}</Button>
-      </Container>
+        <Container>
+            <Button onClick={() => { setUsePlots(val => !val) }}>{`$plots`}</Button>
+        </Container>
     )
-  }
+}
