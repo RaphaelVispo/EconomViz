@@ -14,7 +14,7 @@ export function Matrix_Input() {
         id: 1,
 
     }])
-    const { plots, setUsePlots } = useContext(usePlots);
+    const { plots, setUsePlots, original, setOriginal } = useContext(usePlots);
 
 
 
@@ -56,7 +56,23 @@ export function Matrix_Input() {
     }
 
     // submit function
-    const onSubmit = () => {
+    const onSubmit = () => {    
+        setOriginal(plot => ({
+        
+            demand: {
+                original: {
+                    qd: DemandFields.map(value => parseInt(value.qd)),
+                    price: DemandFields.map(value => parseInt(value.price))
+                }
+            },
+            supply: {
+                ...plot.supply,
+                original: {
+                    qd: SupplyFields.map(value => parseInt(value.qd)),
+                    price: SupplyFields.map(value => parseInt(value.price))
+                }
+            }
+        }))
 
         setUsePlots(plot => ({
             ...plot,

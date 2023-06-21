@@ -39,6 +39,21 @@ function App() {
     shift: 0,
 
   })
+  const [ original, setOriginal] = useState({
+    demand: {
+      original: {
+        qd: [0, 10, 20, 30, 40],
+        price: [40, 30, 20, 10, 0]
+      }
+    },
+    supply: {
+      original: {
+        qd: [0, 10, 20, 30, 40],
+        price: [0, 10, 20, 30, 40],
+      }
+    }
+
+  }) 
   const [plots, setPlots] = useState({
     demand: {
       original: {
@@ -86,7 +101,7 @@ function App() {
 
   return (
     <div>
-      <usePlots.Provider value={{ plots, setUsePlots }} >
+      <usePlots.Provider value={{ plots, setUsePlots,original, setOriginal  }} >
         <solvedRegeression.Provider value={{
           solved, setSolved, trevenue, setTrevenue
         }}>

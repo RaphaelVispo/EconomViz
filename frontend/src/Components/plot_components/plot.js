@@ -1,12 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Plot from 'react-plotly.js';
-import { solvedRegeression } from '../../App';
-
+import { solvedRegeression, usePlots} from '../../App';
 
 export function Plot_Law(props) {
     const { solved, setSolved, trevenue, setTrevenue} = useContext(solvedRegeression);
-
+    const { plots, setUsePlots, original, setOriginal } = useContext(usePlots);
     const [plotWidth, setPlotWidth] = useState(0);
+    const [qdmax, setqdmax ] = useState(0);
+    const [pricemax, setpricemax] = useState(0);
+
+    
 
     // for first instanciation of the app 
     // getting width of the 
@@ -30,6 +33,14 @@ export function Plot_Law(props) {
         }
         setPlotWidth(document.body.clientWidth)
     })
+
+
+    useEffect(()=>{
+        console.log("original", original, plots.demand.orginal)
+        setqdmax(val => val = Math.max(...solved.demand.regression.qd))
+        setpricemax(val => val = Math.max(...solved.demand.regression.price))
+    }, [original])
+    
 
     return (
         <>
@@ -82,13 +93,14 @@ export function Plot_Law(props) {
                         title: 'Qd',
                         rangemode: 'tozero',
                         autotick: true,
-                        range: [0, Math.max(...solved.demand.original.qd)]
+                        range:[0, qdmax]
                     },
+                    uirevision: 'initial_layout',
                     yaxis: {
                         title: 'Price',
                         rangemode: 'tozero',
                         autotick: true,
-                        range: [0, Math.max(...solved.demand.original.price)]
+                        range: [0, pricemax]
                     },
                     legend: {
                         y: -0.2, // Set the yanchor value to "bottom"
