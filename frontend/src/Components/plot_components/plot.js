@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Plot from 'react-plotly.js';
-import { solvedRegeression, usePlots} from '../../App';
+import { usePlots } from '../../App';
 
 export function Plot_Law(props) {
-    const { solved, setSolved, trevenue, setTrevenue} = useContext(solvedRegeression);
-    const { plots, setUsePlots, original, setOriginal } = useContext(usePlots);
-    const [plotWidth, setPlotWidth] = useState(0);
-    const [qdmax, setqdmax ] = useState(0);
-    const [pricemax, setpricemax] = useState(0);
+    const {
+        regression, setRegression,
+        range, setRange,
+        trevenue, setTrevenue } = useContext(usePlots);
 
-    
+    const [plotWidth, setPlotWidth] = useState(0);
+
 
     // for first instanciation of the app 
     // getting width of the 
@@ -35,12 +35,14 @@ export function Plot_Law(props) {
     })
 
 
-    useEffect(()=>{
-        console.log("original", original, plots.demand.orginal)
-        setqdmax(val => val = Math.max(...solved.demand.regression.qd))
-        setpricemax(val => val = Math.max(...solved.demand.regression.price))
-    }, [original])
-    
+    // useEffect(() => {
+    //     console.log("original", original, regression.demand)
+    //     setRange(val => ({
+    //         qdmax: Math.max(...regression.demand.regression.qd),
+    //         pricemax: Math.max(...regression.demand.regression.price)
+    //     }))
+    // }, [original])
+
 
     return (
         <>
@@ -56,27 +58,13 @@ export function Plot_Law(props) {
                     //     name: 'Supply Regression',
                     // },
                     {
-                        x: solved.demand.regression.qd,
-                        y: solved.demand.regression.price,
+                        x: regression.demand.regression.qd,
+                        y: regression.demand.regression.price,
                         type: 'line',
                         marker: { color: 'blue' },
                         line: { width: 5 },
                         name: 'Demand Regression',
                     },
-                    // {type: 'scatter',
-                    //   x: data_Supply.original.X,
-                    //   y: data_Supply.original.y,
-                    //   mode: 'markers',
-                    //   marker: {opacity: 0.5},
-                    //   name: 'Supply Data',
-                    // },
-                    // {type: 'scatter',
-                    //   x: data_Demand.original.X,
-                    //   y: data_Demand.original.y,
-                    //   mode: 'markers',
-                    //   marker: {opacity: 0.5},
-                    //   name: 'Demand Data',
-                    // },
                 ]}
                 layout={{
 
@@ -91,16 +79,16 @@ export function Plot_Law(props) {
                     },
                     xaxis: {
                         title: 'Qd',
-                        rangemode: 'tozero',
+                        rangemode: 'nonnegative',
                         autotick: true,
-                        range:[0, qdmax]
+                        range: [0, range.qdmax]
                     },
                     uirevision: 'initial_layout',
                     yaxis: {
                         title: 'Price',
-                        rangemode: 'tozero',
+                        rangemode: 'nonnegative',
                         autotick: true,
-                        range: [0, pricemax]
+                        range: [0, range.pricemax]
                     },
                     legend: {
                         y: -0.2, // Set the yanchor value to "bottom"
@@ -114,8 +102,8 @@ export function Plot_Law(props) {
                             yref: 'y',
                             x0: 0,
                             y0: 0,
-                            x1: solved.demand.regression.qd[trevenue],
-                            y1: solved.demand.regression.price[trevenue],
+                            x1: regression.demand.regression.qd[trevenue],
+                            y1: regression.demand.regression.price[trevenue],
                             fillcolor: '#adadad',
                             opacity: 0.5,
 

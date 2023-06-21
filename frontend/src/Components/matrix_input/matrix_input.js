@@ -73,25 +73,6 @@ export function Matrix_Input() {
                 }
             }
         }))
-
-        setUsePlots(plot => ({
-            ...plot,
-            demand: {
-                ...plot.demand,
-                original: {
-                    qd: DemandFields.map(value => parseInt(value.qd)),
-                    price: DemandFields.map(value => parseInt(value.price))
-                }
-            },
-            supply: {
-                ...plot.supply,
-                original: {
-                    qd: SupplyFields.map(value => parseInt(value.qd)),
-                    price: SupplyFields.map(value => parseInt(value.price))
-                }
-            }
-        }))
-
     }
 
     useEffect(() => {
@@ -109,14 +90,14 @@ export function Matrix_Input() {
                         <Container className='my-2'>
                             <h3>Demand Points</h3>
                             <Row className="m-1 d-flex " fluid >
-                                <Col className='align-items-center justify-content-center' sm={4}><h5>Quantity Demanded</h5></Col>
+                                <Col className='align-items-center justify-content-center' sm={4}><h5>Quantity</h5></Col>
                                 <Col className='d-flex  align-items-center justify-content-center' sm={4}><h5>Price</h5></Col>
                             </Row>
                             {
                                 DemandFields.map((field, i) => {
                                     return (
                                         <Row fluid >
-                                            <Col md className="m-1">
+                                            <Col xm className="m-1">
                                                 <Form.Control
                                                     value={field.x}
                                                     name='qd'
@@ -124,14 +105,14 @@ export function Matrix_Input() {
                                                     type="text" placeholder="Enter a value" />
                                             </Col>
 
-                                            <Col md className="m-1">
+                                            <Col xm className="sm m-1">
                                                 <Form.Control
                                                     value={field.y}
                                                     name='price'
                                                     onChange={e => handleChangeInputDemand(i, e)}
                                                     type="text" placeholder="Enter a value" />
                                             </Col>
-                                            <Col md className="m-1">
+                                            <Col xm className="m-1">
                                                 <Button className="mx-2"
                                                     type="button" onClick={() => handleAddDemand(i)}>
                                                     +
@@ -151,14 +132,14 @@ export function Matrix_Input() {
 
                             <h3>Supply Points</h3>
                             <Row className="m-1 d-flex " fluid >
-                                <Col className='align-items-center justify-content-center' sm={4}><h5>Quantity Demanded</h5></Col>
+                                <Col className='align-items-center justify-content-center' sm={4}><h5>Quantity</h5></Col>
                                 <Col className='d-flex  align-items-center justify-content-center' sm={4}><h5>Price</h5></Col>
                             </Row>
                             {
                                 SupplyFields.map((field, i) => {
                                     return (
                                         <Row fluid >
-                                            <Col md className="m-1">
+                                            <Col xs className="m-1">
                                                 <Form.Control
                                                     value={field.x}
                                                     name='qd'
@@ -166,14 +147,14 @@ export function Matrix_Input() {
                                                     type="text" placeholder="Enter a value" />
                                             </Col>
 
-                                            <Col md className="m-1">
+                                            <Col xs className="m-1">
                                                 <Form.Control
                                                     value={field.y}
                                                     name='price'
                                                     onChange={e => handleChangeInputSupply(i, e)}
                                                     type="text" placeholder="Enter a value" />
                                             </Col>
-                                            <Col md className="m-1">
+                                            <Col xs className="m-1">
                                                 <Button className="mx-2"
                                                     type="button" onClick={() => handleAddSupply(i)}>
                                                     +

@@ -1,15 +1,15 @@
 
 import { InlineMath, BlockMath } from 'react-katex';
 import { useContext } from 'react';
-import { solvedRegeression } from '../../App';
+import { usePlots } from '../../App';
 import ReactSlider from "react-slider";
 
 
 export function Total_Revenue_Demand(props) {
-    const { solved, setSolved, trevenue, setTrevenue } = useContext(solvedRegeression);
+    const { regression, setSolved, trevenue, setTrevenue } = useContext(usePlots);
 
-    const demand_Regression_Qd = solved.demand.regression.qd[trevenue]
-    const demand_Regression_P = solved.demand.regression.price[trevenue]
+    const demand_Regression_Qd = regression.demand.regression.qd[trevenue]
+    const demand_Regression_P = regression.demand.regression.price[trevenue]
     const Total = demand_Regression_Qd * demand_Regression_P
 
     return (

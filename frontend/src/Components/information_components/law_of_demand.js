@@ -2,7 +2,7 @@ import { InlineMath, BlockMath } from 'react-katex';
 import { Total_Revenue_Demand } from './total_revenue_demand';
 import React from 'react'
 
-import {Container, Navbar, Nav, Row, Col, Card, Button} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import { Elasticity_Demand } from './elasticity_Demand';
 
 

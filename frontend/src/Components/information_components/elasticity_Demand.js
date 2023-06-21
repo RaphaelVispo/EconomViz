@@ -2,18 +2,21 @@
 import { InlineMath, BlockMath } from 'react-katex';
 import { useContext } from 'react';
 import ReactSlider from "react-slider";
-import { solvedRegeression, usePlots } from '../../App';
+import { usePlots } from '../../App';
 
 
 export function Elasticity_Demand(props) {
-    const { plots, setUsePlots } = useContext(usePlots);
-    const {solved, setSolved, trevenue, setTrevenue} = useContext(solvedRegeression);
+    const {
+        regression, setRegression,
+        changeGraph, setChangeGraph,
+        original, setOriginal,
+        trevenue, setTrevenue } = useContext(usePlots);
 
 
-    const Q1 = parseFloat(solved.demand.regression.qd[trevenue])
-    const Q2 = parseFloat(solved.demand.regression.qd[trevenue - 1])
-    const P1 = parseFloat(solved.demand.regression.price[trevenue])
-    const P2 = parseFloat(solved.demand.regression.price[trevenue - 1])
+    const Q1 = parseFloat(regression.demand.regression.qd[trevenue])
+    const Q2 = parseFloat(regression.demand.regression.qd[trevenue - 1])
+    const P1 = parseFloat(regression.demand.regression.price[trevenue])
+    const P2 = parseFloat(regression.demand.regression.price[trevenue - 1])
 
 
     const elasticity = ((parseFloat(Q2) - parseFloat(Q1)) / (Q2 + Q1)) / ((P2 - P1) / (P2 + P1))
@@ -42,9 +45,9 @@ export function Elasticity_Demand(props) {
                 min={-100}
                 max={100}
                 defaultValue={0}
-                value={plots.slope}
+                value={changeGraph.slope}
                 onChange={(slope) => {
-                    setUsePlots(plots => ({
+                    setChangeGraph(plots => ({
                         ...plots,
                         slope: slope
                     }));
@@ -65,9 +68,9 @@ export function Elasticity_Demand(props) {
                 min={-100}
                 max={100}
                 defaultValue={0}
-                value={plots.shift}
+                value={changeGraph.shift}
                 onChange={(shift) => {
-                    setUsePlots(plots => ({
+                    setChangeGraph(plots => ({
                         ...plots,
                         shift: shift
                     }));
