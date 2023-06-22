@@ -5,7 +5,7 @@ const solveLinearRegression = async (
   setRegression,
   setRange,
   newrange,
-  setChangeGraph
+  setChangeGraph,
 ) => {
   const plots = {
     demand: { ...original.demand, ...regression.demand },
@@ -34,11 +34,10 @@ const solveLinearRegression = async (
     },
   }));
 
-
   if (newrange) {
-    setChangeGraph(() =>({
+    setChangeGraph(() => ({
       shift: 0,
-      slope: 0
+      slope: 0,
     }));
     setRange(() => ({
       qdmax: Math.max(...jsonData.X),
@@ -48,10 +47,10 @@ const solveLinearRegression = async (
 };
 
 const resetValues = (setChangeGraph) => {
-  setChangeGraph(() =>({
+  setChangeGraph(() => ({
     shift: 0,
-    slope: 0
-  }))
-}
+    slope: 0,
+  }));
+};
 
 export { solveLinearRegression, resetValues };

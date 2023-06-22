@@ -10,7 +10,11 @@ export function LawOfDemand() {
     <Container className="p-3">
 
       <h2> Law of Demand</h2>
-      <p> Demand refers to the various quatities of the a good or service that users/consumers are willing and able to buy.</p>
+      <p>
+        {' '}
+        Demand refers to the various quatities of the a good
+        or service that users/consumers are willing and able to buy.
+      </p>
 
       <h5> Demand Equation</h5>
       <p>
