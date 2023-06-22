@@ -65,9 +65,8 @@ function App() {
       setRegression,
       setRange,
       true,
-      setChangeGraph
+      setChangeGraph,
     );
-
   }, [original]);
 
   useEffect(() => {
