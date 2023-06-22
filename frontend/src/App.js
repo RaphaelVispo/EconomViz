@@ -87,11 +87,11 @@ function App() {
         <NavBar_Main />
 
         <Container id="information" fluid >
-          <Row >
-            <Col md={{ order: 6 }}>
+          <Row className='d-flex justify-content-center'>
+            <Col md>
               < Plot_Law />
             </Col>
-            <Col md={{ order: 1 }}>
+            <Col md>
               <Card_information />
             </Col>
           </Row>

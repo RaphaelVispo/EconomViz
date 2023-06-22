@@ -35,14 +35,6 @@ export function Plot_Law(props) {
     })
 
 
-    // useEffect(() => {
-    //     console.log("original", original, regression.demand)
-    //     setRange(val => ({
-    //         qdmax: Math.max(...regression.demand.regression.qd),
-    //         pricemax: Math.max(...regression.demand.regression.price)
-    //     }))
-    // }, [original])
-
 
     return (
         <>
@@ -78,12 +70,11 @@ export function Plot_Law(props) {
                         pad: 4 // padding between plot area and the margin
                     },
                     xaxis: {
-                        title: 'Qd',
+                        title: 'Q',
                         rangemode: 'nonnegative',
                         autotick: true,
                         range: [0, range.qdmax]
                     },
-                    uirevision: 'initial_layout',
                     yaxis: {
                         title: 'Price',
                         rangemode: 'nonnegative',

@@ -10,7 +10,7 @@ export function Law_Of_Demand(props) {
 
 
     return (
-        <Container style={{ padding: '1.5em' }}>
+        <Container className='p-3'>
 
 
             <h2> Law of Demand</h2>

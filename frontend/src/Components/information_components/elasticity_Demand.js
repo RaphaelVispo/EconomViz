@@ -89,7 +89,7 @@ export function Elasticity_Demand(props) {
                 math={`\\big | \\epsilon \\big |
               = \\left | \\frac{${Q2.toFixed(2)} - ${Q1.toFixed(2)}}{${Q2.toFixed(2)} + ${Q1.toFixed(2)}} \\div 
              \\frac{${P2.toFixed(2)} - ${P1.toFixed(2)}}{${P2.toFixed(2)} + ${P1.toFixed(2)}} \\right|
-             =| ${elasticity.toFixed(2) === "-0.00" ? "0.00" : elasticity.toFixed(2)} | = ${Math.abs(elasticity.toFixed(2))}`}
+             \\allowbreak =| ${elasticity.toFixed(2) === "-0.00" ? "0.00" : elasticity.toFixed(2)} | = ${Math.abs(elasticity.toFixed(2))}`}
             />
 
 

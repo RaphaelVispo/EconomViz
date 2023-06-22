@@ -75,23 +75,19 @@ export function Matrix_Input() {
         }))
     }
 
-    useEffect(() => {
-        console.log("plots", plots);
-    }, [plots]);
-
 
     return (
         <>
 
             <Form >
-                <Container className='m-2'>
+                <Container className='px-2'>
 
                     <Form.Group controlId="formField">
-                        <Container className='my-2'>
-                            <h3>Demand Points</h3>
-                            <Row className="m-1 d-flex " fluid >
-                                <Col className='align-items-center justify-content-center' sm={4}><h5>Quantity</h5></Col>
-                                <Col className='d-flex  align-items-center justify-content-center' sm={4}><h5>Price</h5></Col>
+                        <Container className='my-4' >
+                            <h4>Demand Points</h4>
+                            <Row  className='px-2'fluid >
+                                <Col  xm={6} md={4}><p>Quantity</p></Col>
+                                <Col xm={12} md={8}><p>Price</p></Col>
                             </Row>
                             {
                                 DemandFields.map((field, i) => {
@@ -105,7 +101,7 @@ export function Matrix_Input() {
                                                     type="text" placeholder="Enter a value" />
                                             </Col>
 
-                                            <Col xm className="sm m-1">
+                                            <Col xm className="m-1">
                                                 <Form.Control
                                                     value={field.y}
                                                     name='price'
@@ -113,7 +109,7 @@ export function Matrix_Input() {
                                                     type="text" placeholder="Enter a value" />
                                             </Col>
                                             <Col xm className="m-1">
-                                                <Button className="mx-2"
+                                                <Button className="mx-1"
                                                     type="button" onClick={() => handleAddDemand(i)}>
                                                     +
                                                 </Button>
@@ -127,13 +123,13 @@ export function Matrix_Input() {
                             }
                         </Container>
 
-                        <Container className='my-2'>
+                        <Container className='my-4' >
 
 
-                            <h3>Supply Points</h3>
-                            <Row className="m-1 d-flex " fluid >
-                                <Col className='align-items-center justify-content-center' sm={4}><h5>Quantity</h5></Col>
-                                <Col className='d-flex  align-items-center justify-content-center' sm={4}><h5>Price</h5></Col>
+                            <h4>Supply Points</h4>
+                            <Row  className='px-2'fluid >
+                                <Col  xm={6} md={4}><p>Quantity</p></Col>
+                                <Col xm={12} md={8}><p>Price</p></Col>
                             </Row>
                             {
                                 SupplyFields.map((field, i) => {
@@ -155,7 +151,7 @@ export function Matrix_Input() {
                                                     type="text" placeholder="Enter a value" />
                                             </Col>
                                             <Col xs className="m-1">
-                                                <Button className="mx-2"
+                                                <Button className="mx-1"
                                                     type="button" onClick={() => handleAddSupply(i)}>
                                                     +
                                                 </Button>
@@ -178,14 +174,4 @@ export function Matrix_Input() {
         </>
     )
 
-}
-
-export const Anotherfunction = () => {
-    const { plots, setUsePlots } = useContext(usePlots);
-
-    return (
-        <Container>
-            <Button onClick={() => { setUsePlots(val => !val) }}>{`$plots`}</Button>
-        </Container>
-    )
 }
