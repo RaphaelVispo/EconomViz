@@ -5,6 +5,7 @@ const solveLinearRegression = async (
   setRegression,
   setRange,
   newrange,
+  setChangeGraph
 ) => {
   const plots = {
     demand: { ...original.demand, ...regression.demand },
@@ -12,7 +13,7 @@ const solveLinearRegression = async (
     ...changeGraph,
   };
 
-  const res = await fetch('http://0.0.0.0:5000/api/linear_regression', {
+  const res = await fetch('https://economviz-production.up.railway.app/api/linear_regression"', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -33,7 +34,12 @@ const solveLinearRegression = async (
     },
   }));
 
+
   if (newrange) {
+    setChangeGraph(() =>({
+      shift: 0,
+      slope: 0
+    }));
     setRange(() => ({
       qdmax: Math.max(...jsonData.X),
       pricemax: Math.max(...jsonData.y),
@@ -41,4 +47,11 @@ const solveLinearRegression = async (
   }
 };
 
-export { solveLinearRegression };
+const resetValues = (setChangeGraph) => {
+  setChangeGraph(() =>({
+    shift: 0,
+    slope: 0
+  }))
+}
+
+export { solveLinearRegression, resetValues };

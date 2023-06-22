@@ -4,7 +4,7 @@ import React, {
 import {
   Container, Row, Col,
 } from 'react-bootstrap';
-import { solveLinearRegression } from './linear_regression';
+import { solveLinearRegression, resetValues } from './linear_regression';
 import 'katex/dist/katex.min.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -65,7 +65,9 @@ function App() {
       setRegression,
       setRange,
       true,
+      setChangeGraph
     );
+
   }, [original]);
 
   useEffect(() => {
