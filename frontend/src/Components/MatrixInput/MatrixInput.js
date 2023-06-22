@@ -80,30 +80,32 @@ export function MatrixInput() {
         <Form.Group controlId="formField">
           <Container className="my-4">
             <h4>Demand Points</h4>
-            <Row className="px-2" fluid>
-              <Col xm={6} md={4}><p>Quantity</p></Col>
-              <Col xm={12} md={8}><p>Price</p></Col>
+            <Row className="mx-1" fluid>
+              <Col xs><p>Quantity</p></Col>
+              <Col xs className="d-flex">
+                <p className="float-left">Price</p>
+              </Col>
             </Row>
             {
                             DemandFields.map((field, i) => (
                               <Row fluid>
-                                <Col xm className="m-1">
+                                <Col xm className="mx-1">
                                   <Form.Control
                                     value={field.x}
                                     name="qd"
                                     onChange={(e) => handleChangeInputDemand(i, e)}
                                     type="text"
-                                    placeholder="Enter a value"
+                                    placeholder="Value"
                                   />
                                 </Col>
 
-                                <Col xm className="m-1">
+                                <Col xm className="mx-1">
                                   <Form.Control
                                     value={field.y}
                                     name="price"
                                     onChange={(e) => handleChangeInputDemand(i, e)}
                                     type="text"
-                                    placeholder="Enter a value"
+                                    placeholder="Value"
                                   />
                                 </Col>
                                 <Col xm className="m-1">
@@ -130,9 +132,11 @@ export function MatrixInput() {
           <Container className="my-4">
 
             <h4>Supply Points</h4>
-            <Row className="px-2" fluid>
-              <Col xm={6} md={4}><p>Quantity</p></Col>
-              <Col xm={12} md={8}><p>Price</p></Col>
+            <Row className="mx-1" fluid>
+              <Col xs><p>Quantity</p></Col>
+              <Col xs className="d-flex">
+                <p className="float-left">Price</p>
+              </Col>
             </Row>
             {
                             SupplyFields.map((field, i) => (
@@ -143,7 +147,7 @@ export function MatrixInput() {
                                     name="qd"
                                     onChange={(e) => handleChangeInputSupply(i, e)}
                                     type="text"
-                                    placeholder="Enter a value"
+                                    placeholder="Value"
                                   />
                                 </Col>
 
@@ -153,7 +157,7 @@ export function MatrixInput() {
                                     name="price"
                                     onChange={(e) => handleChangeInputSupply(i, e)}
                                     type="text"
-                                    placeholder="Enter a value"
+                                    placeholder="Value"
                                   />
                                 </Col>
                                 <Col xs className="m-1">

@@ -16,13 +16,13 @@ export function CardInformation() {
       <Card.Header>
         <Nav variant="pills" defaultActiveKey="#first">
           <Nav.Item>
-            <Nav.Link onClick={() => { changeInfo('MatrixInput'); }}>Matrix</Nav.Link>
+            <Nav.Link onClick={() => { changeInfo('MatrixInput'); }}>Plot</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link onClick={() => { changeInfo('LawOfDemand'); }}>Law of Demand</Nav.Link>
+            <Nav.Link onClick={() => { changeInfo('LawOfDemand'); }}>Demand</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link onClick={() => { changeInfo('LawOfSupply'); }}>Law of Supply</Nav.Link>
+            <Nav.Link onClick={() => { changeInfo('LawOfSupply'); }}>Supply</Nav.Link>
           </Nav.Item>
         </Nav>
       </Card.Header>
