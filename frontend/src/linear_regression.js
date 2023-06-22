@@ -13,7 +13,7 @@ const solveLinearRegression = async (
     ...changeGraph,
   };
 
-  const res = await fetch('https://economviz-production.up.railway.app/api/linear_regression"', {
+  const res = await fetch('https://economviz-production.up.railway.app/api/linear_regression', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
