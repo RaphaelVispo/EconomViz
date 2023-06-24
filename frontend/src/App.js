@@ -4,7 +4,7 @@ import React, {
 import {
   Container, Row, Col,
 } from 'react-bootstrap';
-import { solveLinearRegression, resetValues } from './linear_regression';
+import { solveLinearRegression } from './linear_regression';
 import 'katex/dist/katex.min.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,8 +17,15 @@ export const usePlots = createContext();
 
 function App() {
   const [changeGraph, setChangeGraph] = useState({
-    slope: 0,
-    shift: 0,
+    demand: {
+      slope: 0,
+      shift: 0
+    },
+    supply: {
+      slope: 0,
+      shift: 0
+    }
+
   });
   const [original, setOriginal] = useState({
     demand: {
@@ -49,6 +56,9 @@ function App() {
         price: [],
       },
     },
+    priceEquilibrium: [],
+    priceCieling: [],
+    priceFloor: []
   });
 
   const [trevenue, setTrevenue] = useState(0);
