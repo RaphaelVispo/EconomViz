@@ -7,6 +7,7 @@ export function PlotLaw() {
     regression,
     range,
     trevenue,
+    changeGraph
   } = useContext(usePlots);
 
   const [plotWidth, setPlotWidth] = useState(0);
@@ -14,6 +15,7 @@ export function PlotLaw() {
   // for first instanciation of the app
   // getting width of the
   useEffect(() => {
+    console.log(changeGraph)
     if (document.body.clientWidth > 900) {
       setPlotWidth(900);
     } else {
@@ -34,20 +36,20 @@ export function PlotLaw() {
     <Plot
       data={[
 
-        // {
-        //     x: data_Supply.regression.X  ,
-        //     y: data_Supply.regression.y ,
-        //     type: 'line',
-        //     marker: {color: 'red'},
-        //     line: { width: 5} ,
-        //     name: 'Supply Regression',
-        // },
+        {
+          x: regression.supply.regression.qd,
+          y: regression.supply.regression.price,
+          type: 'line',
+          marker: { color: 'red' },
+          line: { width: 7 },
+          name: 'Supply Regression',
+        },
         {
           x: regression.demand.regression.qd,
           y: regression.demand.regression.price,
           type: 'line',
           marker: { color: 'blue' },
-          line: { width: 5 },
+          line: { width: 7 },
           name: 'Demand Regression',
         },
       ]}
@@ -95,6 +97,36 @@ export function PlotLaw() {
 
               width: 0,
 
+            },
+          },
+          {
+            type: 'circle',
+            xref: 'x',
+            yref: 'y',
+            x0: regression.demand.regression.qd[trevenue] - 0.75, // X coordinate of the dot
+            y0: regression.demand.regression.price[trevenue] - 0.75, // Y coordinate of the dot
+            x1: regression.demand.regression.qd[trevenue] + 0.75, // X coordinate of the dot
+            y1: regression.demand.regression.price[trevenue] + 0.75, // Y coordinate of the dot
+            fillcolor: 'black', // Color of the dot
+            opacity: 1,
+            line: {
+              color: 'black', // Color of the dot's outline
+              width: 0,
+            },
+          },
+          {
+            type: 'circle',
+            xref: 'x',
+            yref: 'y',
+            x0: regression.priceEquilibrium[0] - 0.75, // X coordinate of the dot
+            y0: regression.priceEquilibrium[1] - 0.75, // Y coordinate of the dot
+            x1: regression.priceEquilibrium[0]+ 0.75, // X coordinate of the dot
+            y1: regression.priceEquilibrium[1] + 0.75, // Y coordinate of the dot
+            fillcolor: 'black', // Color of the dot
+            opacity: 1,
+            line: {
+              color: 'black', // Color of the dot's outline
+              width: 0,
             },
           },
 
