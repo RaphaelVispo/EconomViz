@@ -7,7 +7,6 @@ class point (BaseModel):
 
 class type (BaseModel):
     original: point
-    regression: point
     slope: int = 0
     shift: int = 0
 
