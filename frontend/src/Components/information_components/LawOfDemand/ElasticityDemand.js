@@ -1,7 +1,7 @@
 import { BlockMath } from 'react-katex';
 import React, { useContext } from 'react';
 import ReactSlider from 'react-slider';
-import { usePlots } from '../../App';
+import { usePlots } from '../../../App';
 
 export default function ElasticityDemand() {
   const {
@@ -33,11 +33,14 @@ export default function ElasticityDemand() {
         min={-100}
         max={100}
         defaultValue={0}
-        value={changeGraph.slope}
+        value={changeGraph.demand.slope}
         onChange={(slope) => {
           setChangeGraph((plots) => ({
             ...plots,
-            slope,
+            demand: {
+              ...plots.demand,
+              slope: slope
+            }
           }));
         }}
       />
@@ -55,11 +58,15 @@ export default function ElasticityDemand() {
         min={-100}
         max={100}
         defaultValue={0}
-        value={changeGraph.shift}
+        value={changeGraph.demand.shift}
         onChange={(shift) => {
           setChangeGraph((plots) => ({
             ...plots,
-            shift,
+            demand: {
+              ...plots.demand,
+              shift: shift
+            }
+
           }));
         }}
       />
@@ -78,19 +85,6 @@ export default function ElasticityDemand() {
               = \\left | \\frac{${Q2.toFixed(2)} - ${Q1.toFixed(2)}}{${Q2.toFixed(2)} + ${Q1.toFixed(2)}} \\div 
              \\frac{${P2.toFixed(2)} - ${P1.toFixed(2)}}{${P2.toFixed(2)} + ${P1.toFixed(2)}} \\right|
              \\allowbreak =| ${elasticity.toFixed(2) === '-0.00' ? '0.00' : elasticity.toFixed(2)} | = ${Math.abs(elasticity.toFixed(2))}`}
-      />
-
-      <ReactSlider
-        className="customSlider"
-        thumbClassName="customSlider-thumb"
-        trackClassName="customSlider-track"
-        markClassName="customSlider-mark"
-        marks={20}
-        min={0}
-        max={100}
-        defaultValue={0}
-        value={trevenue}
-        onChange={(value) => setTrevenue(() => value)}
       />
 
     </>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Nav, Card } from 'react-bootstrap';
-import { LawOfDemand } from './LawOfDemand';
-import { LawOfSupply } from './LawOfSupply';
+import { LawOfDemand } from './LawOfDemand/LawOfDemand';
+import { LawOfSupply } from './LawOfSupply/LawOfSupply';
 import { MatrixInput } from '../MatrixInput/MatrixInput';
 
 export function CardInformation() {
