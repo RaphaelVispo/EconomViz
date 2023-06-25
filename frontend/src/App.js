@@ -24,7 +24,9 @@ function App() {
     supply: {
       slope: 0,
       shift: 0
-    }
+    },
+    showPriceFloor: false,
+    priceFloor: 0
 
   });
   const [original, setOriginal] = useState({
@@ -57,8 +59,9 @@ function App() {
       },
     },
     priceEquilibrium: [],
-    priceCieling: [],
-    priceFloor: []
+    priceCeilingPoints: [],
+    priceFloorPoints: [],
+    
   });
 
   const [trevenue, setTrevenue] = useState(0);
@@ -77,6 +80,7 @@ function App() {
       true,
       setChangeGraph,
     );
+
   }, [original]);
 
   useEffect(() => {
@@ -88,6 +92,8 @@ function App() {
       setRange,
       false,
     );
+    console.log("rge", Math.min(Math.max.apply(Math, regression.demand.regression.price), 
+    Math.max.apply(Math, regression.supply.regression.price)))
   }, [changeGraph]);
 
   return (

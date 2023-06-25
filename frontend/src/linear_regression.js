@@ -8,8 +8,9 @@ const solveLinearRegression = async (
   setChangeGraph,
 ) => {
   const plots = {
-    demand: { ...original.demand, ...regression.demand, ...changeGraph.demand },
-    supply: { ...original.supply, ...regression.supply, ...changeGraph.supply},
+    demand: { ...original.demand, ...changeGraph.demand },
+    supply: { ...original.supply, ...changeGraph.supply},
+    price_floor : changeGraph.priceFloor
   
   };
   console.log(plots)
@@ -24,9 +25,10 @@ const solveLinearRegression = async (
 
   const resData = await res.json();
   const jsonData = JSON.parse(resData);
+  console.log(changeGraph)
   console.log(jsonData);
 
-  setRegression((prev) => ({
+  setRegression(() => ({
     demand: {
       regression: jsonData.demand
     },
@@ -34,8 +36,8 @@ const solveLinearRegression = async (
       regression: jsonData.supply
     },
     priceEquilibrium: jsonData.equilibrum_point,
-    priceCieling: jsonData.price_floor,
-    priceFloor: jsonData.price_ceiling
+    priceCeilingPoints: jsonData.price_ceiling,
+    priceFloorPoints: jsonData.price_floor
   }));
 
   if (newrange) {

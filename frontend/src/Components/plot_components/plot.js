@@ -81,6 +81,20 @@ export function PlotLaw() {
           x: 0,
         },
         shapes: [
+          { // Demand point
+            type: 'circle',
+            xref: 'x',
+            yref: 'y',
+            x0: regression.demand.regression.qd[trevenue] - 0.75, // X coordinate of the dot
+            y0: regression.demand.regression.price[trevenue] - 0.75, // Y coordinate of the dot
+            x1: regression.demand.regression.qd[trevenue] + 0.75, // X coordinate of the dot
+            y1: regression.demand.regression.price[trevenue] + 0.75, // Y coordinate of the dot
+            fillcolor: 'blue', // Color of the dot
+            opacity: 1,
+            line: {
+              width: 0,
+            },
+          },
           {
 
             type: 'rect',
@@ -92,29 +106,15 @@ export function PlotLaw() {
             y1: regression.demand.regression.price[trevenue],
             fillcolor: '#adadad',
             opacity: 0.5,
-
+            layer:"below",
             line: {
 
               width: 0,
 
             },
           },
-          {
-            type: 'circle',
-            xref: 'x',
-            yref: 'y',
-            x0: regression.demand.regression.qd[trevenue] - 0.75, // X coordinate of the dot
-            y0: regression.demand.regression.price[trevenue] - 0.75, // Y coordinate of the dot
-            x1: regression.demand.regression.qd[trevenue] + 0.75, // X coordinate of the dot
-            y1: regression.demand.regression.price[trevenue] + 0.75, // Y coordinate of the dot
-            fillcolor: 'black', // Color of the dot
-            opacity: 1,
-            line: {
-              color: 'black', // Color of the dot's outline
-              width: 0,
-            },
-          },
-          {
+
+          regression.priceEquilibrium[0] && { // equilibrium point
             type: 'circle',
             xref: 'x',
             yref: 'y',
@@ -129,6 +129,72 @@ export function PlotLaw() {
               width: 0,
             },
           },
+
+          // price floor
+          (changeGraph.showPriceFloor && regression.priceFloorPoints[0][0]) &&{
+            type: 'line', // price floor line
+            xref: 'x',
+            yref: 'y',
+            x0: 0,
+            y0: changeGraph.priceFloor,
+            x1: range.qdmax,
+            y1: changeGraph.priceFloor,
+            line: {
+              color: 'black',
+              width: 4,
+              dash: 'dash',
+            },
+          },
+
+          (changeGraph.showPriceFloor && regression.priceFloorPoints[0][0]) &&{
+            type: 'circle',
+            xref: 'x',
+            yref: 'y',
+            x0: regression.priceFloorPoints[0][0]- 0.75, // X coordinate of the dot
+            y0: regression.priceFloorPoints[0][1] - 0.75, // Y coordinate of the dot
+            x1: regression.priceFloorPoints[0][0]+ 0.75, // X coordinate of the dot
+            y1: regression.priceFloorPoints[0][1] + 0.75, // Y coordinate of the dot
+            fillcolor: 'blue', // Color of the dot
+            layer:"above",
+
+            opacity: 1,
+            line: {
+              width: 0,
+
+            },
+          },
+
+          (changeGraph.showPriceFloor && regression.priceFloorPoints[1][0]) &&{
+            type: 'circle',
+            xref: 'x',
+            yref: 'y',
+            x0: regression.priceFloorPoints[1][0]- 0.75, // X coordinate of the dot
+            y0: regression.priceFloorPoints[1][1] - 0.75, // Y coordinate of the dot
+            x1: regression.priceFloorPoints[1][0]+ 0.75, // X coordinate of the dot
+            y1: regression.priceFloorPoints[1][1] + 0.75, // Y coordinate of the dot
+            fillcolor: 'red', // Color of the dot
+            layer:"above",
+            opacity: 1,
+            line: {
+              width: 0,
+            },
+          },
+
+          // {
+          //   type: 'line', // price floor line
+          //   xref: 'x',
+          //   yref: 'y',
+          //   x0: 0,
+          //   y0: regression.demand.regression.price[trevenue],
+          //   x1: regression.demand.regression.qd[trevenue],
+          //   y1: regression.demand.regression.price[trevenue],
+          //   layer:"below",
+          //   line: {
+          //     color: 'black',
+          //     width: 2,
+          //     dash: 'dash',
+          //   },
+          // },
 
         ],
       }}

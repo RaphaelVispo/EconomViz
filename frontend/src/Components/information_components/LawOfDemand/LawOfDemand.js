@@ -33,8 +33,8 @@ export function LawOfDemand() {
       <h4>
         Equilibrium Point:
       </h4>
-      <BlockMath math={String.raw`Q^* = ${parseFloat(regression.priceEquilibrium[0]).toFixed(2)},
-       P^* = ${parseFloat(regression.priceEquilibrium[1]).toFixed(2)}`} />
+      <BlockMath math={regression.priceEquilibrium[0] ? String.raw`Q^* = ${parseFloat(regression.priceEquilibrium[0]).toFixed(2)}, 
+      ~~~~~~~~ P^* = ${parseFloat(regression.priceEquilibrium[1]).toFixed(2)}`: "\\text{No equilibrium point}"} />
 
       <TotalRevenueDemand />
       <ElasticityDemand />
