@@ -13,8 +13,8 @@ class type (BaseModel):
 class data(BaseModel):
     demand : type
     supply : type
-    price_floor : Optional[int]
-    price_ceiling: Optional[int]
+    price_floor : Optional[float]
+    price_ceiling: Optional[float]
 
 
 class return_Data(BaseModel):

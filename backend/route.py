@@ -10,7 +10,7 @@ router = APIRouter()
 
 @router.post("/linear_regression")
 async def linear_regression(data: data) -> JSONResponse:
-
+    print(data)
     solve = Demand_Supply_Solver(data)
 
     return JSONResponse(content = solve.toJson(), status_code = 200)
