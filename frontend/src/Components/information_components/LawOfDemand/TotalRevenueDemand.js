@@ -1,7 +1,7 @@
 import { BlockMath } from 'react-katex';
 import React, { useContext } from 'react';
 import ReactSlider from 'react-slider';
-import { usePlots } from '../../App';
+import { usePlots } from '../../../App';
 
 export default function TotalRevenueDemand() {
   const {
@@ -28,7 +28,7 @@ export default function TotalRevenueDemand() {
         markClassName="customSlider-mark"
         marks={20}
         min={0}
-        max={100}
+        max={regression.demand.regression.qd.length - 1}
         defaultValue={0}
         value={trevenue}
         onChange={(value) => setTrevenue(() => value)}
