@@ -136,9 +136,9 @@ export function PlotLaw() {
             xref: 'x',
             yref: 'y',
             x0: 0,
-            y0: changeGraph.priceFloor,
+            y0: regression.priceFloorPoints[0][1],
             x1: range.qdmax,
-            y1: changeGraph.priceFloor,
+            y1: regression.priceFloorPoints[0][1],
             line: {
               color: 'black',
               width: 4,

@@ -190,6 +190,7 @@ export function MatrixInput() {
           <Form.Check // prettier-ignore
             type='checkbox'
             label={`Price Floor`}
+            checked={changeGraph.showPriceFloor}
             onChange={() => {
               setChangeGraph((prev) => ({
                 ...prev,
@@ -207,7 +208,7 @@ export function MatrixInput() {
             max={Math.min(Math.max.apply(Math, regression.demand.regression.price), 
               Math.max.apply(Math, regression.supply.regression.price))}
             defaultValue={0}
-            value={changeGraph.priceFloor}
+            Check={changeGraph.priceFloor}
             onChange={(value) => {
               setChangeGraph((plots) => ({
                 ...plots,

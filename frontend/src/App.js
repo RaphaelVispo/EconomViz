@@ -92,8 +92,7 @@ function App() {
       setRange,
       false,
     );
-    console.log("rge", Math.min(Math.max.apply(Math, regression.demand.regression.price), 
-    Math.max.apply(Math, regression.supply.regression.price)))
+
   }, [changeGraph]);
 
   return (
