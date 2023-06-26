@@ -10,7 +10,8 @@ const solveLinearRegression = async (
   const plots = {
     demand: { ...original.demand, ...changeGraph.demand },
     supply: { ...original.supply, ...changeGraph.supply},
-    price_floor : changeGraph.priceFloor
+    price_floor : changeGraph.priceFloor,
+    price_ceiling :  changeGraph.priceCeiling
   
   };
   console.log(plots)

@@ -26,7 +26,9 @@ function App() {
       shift: 0
     },
     showPriceFloor: false,
-    priceFloor: 0
+    showPriceCeiling: false,
+    priceFloor: 0,
+    priceCeiling: 0
 
   });
   const [original, setOriginal] = useState({
@@ -81,6 +83,7 @@ function App() {
       setChangeGraph,
     );
 
+
   }, [original]);
 
   useEffect(() => {
@@ -92,7 +95,8 @@ function App() {
       setRange,
       false,
     );
-
+    console.log("reg", Math.min.apply(Math, regression.demand.regression.price), 
+    Math.min.apply(Math, regression.supply.regression.price))
   }, [changeGraph]);
 
   return (

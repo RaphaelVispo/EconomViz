@@ -180,21 +180,56 @@ export function PlotLaw() {
             },
           },
 
-          // {
-          //   type: 'line', // price floor line
-          //   xref: 'x',
-          //   yref: 'y',
-          //   x0: 0,
-          //   y0: regression.demand.regression.price[trevenue],
-          //   x1: regression.demand.regression.qd[trevenue],
-          //   y1: regression.demand.regression.price[trevenue],
-          //   layer:"below",
-          //   line: {
-          //     color: 'black',
-          //     width: 2,
-          //     dash: 'dash',
-          //   },
-          // },
+          // price celing 
+          // price floor
+          (changeGraph.showPriceCeiling && regression.priceCeilingPoints[0][0]) &&{
+            type: 'line', // price floor line
+            xref: 'x',
+            yref: 'y',
+            x0: 0,
+            y0: regression.priceCeilingPoints[0][1],
+            x1: range.qdmax,
+            y1: regression.priceCeilingPoints[0][1],
+            line: {
+              color: 'black',
+              width: 4,
+              dash: 'dash',
+            },
+          },
+
+          (changeGraph.showPriceCeiling && regression.priceCeilingPoints[0][0]) &&{
+            type: 'circle',
+            xref: 'x',
+            yref: 'y',
+            x0: regression.priceCeilingPoints[0][0]- 0.75, // X coordinate of the dot
+            y0: regression.priceCeilingPoints[0][1] - 0.75, // Y coordinate of the dot
+            x1: regression.priceCeilingPoints[0][0]+ 0.75, // X coordinate of the dot
+            y1: regression.priceCeilingPoints[0][1] + 0.75, // Y coordinate of the dot
+            fillcolor: 'blue', // Color of the dot
+            layer:"above",
+
+            opacity: 1,
+            line: {
+              width: 0,
+
+            },
+          },
+
+          (changeGraph.showPriceCeiling && regression.priceCeilingPoints[1][0]) &&{
+            type: 'circle',
+            xref: 'x',
+            yref: 'y',
+            x0: regression.priceCeilingPoints[1][0]- 0.75, // X coordinate of the dot
+            y0: regression.priceCeilingPoints[1][1] - 0.75, // Y coordinate of the dot
+            x1: regression.priceCeilingPoints[1][0]+ 0.75, // X coordinate of the dot
+            y1: regression.priceCeilingPoints[1][1] + 0.75, // Y coordinate of the dot
+            fillcolor: 'red', // Color of the dot
+            layer:"above",
+            opacity: 1,
+            line: {
+              width: 0,
+            },
+          },
 
         ],
       }}

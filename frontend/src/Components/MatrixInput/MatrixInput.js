@@ -207,12 +207,42 @@ export function MatrixInput() {
             min={regression.priceEquilibrium[1]}
             max={Math.min(Math.max.apply(Math, regression.demand.regression.price), 
               Math.max.apply(Math, regression.supply.regression.price))}
-            defaultValue={0}
-            Check={changeGraph.priceFloor}
+            defaultValue={changeGraph.priceFloor}
             onChange={(value) => {
               setChangeGraph((plots) => ({
                 ...plots,
                 priceFloor: value
+              }));
+            }}
+          />}
+          <br />
+          <br />
+          
+          <Form.Check // price cieling
+            type='checkbox'
+            label={`Price Ceiling`}
+            checked={changeGraph.showPriceCeiling}
+            onChange={() => {
+              setChangeGraph((prev) => ({
+                ...prev,
+                showPriceCeiling: !changeGraph.priceCeiling
+              }))
+            }}
+          />
+          {changeGraph.showPriceCeiling && <ReactSlider
+            className="customSlider"
+            thumbClassName="customSlider-thumb"
+            trackClassName="customSlider-track"
+            markClassName="customSlider-mark"
+            marks={100}
+            defaultValue={changeGraph.priceCeiling}
+            min={Math.max(Math.min.apply(Math, regression.demand.regression.price), 
+              Math.min.apply(Math, regression.supply.regression.price))}
+            max={regression.priceEquilibrium[1]}
+            onChange={(value) => {
+              setChangeGraph((plots) => ({
+                ...plots,
+                priceCeiling: value
               }));
             }}
           />}
