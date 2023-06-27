@@ -63,7 +63,7 @@ function App() {
     priceEquilibrium: [],
     priceCeilingPoints: [],
     priceFloorPoints: [],
-    
+
   });
 
   const [trevenue, setTrevenue] = useState(0);
@@ -95,8 +95,8 @@ function App() {
       setRange,
       false,
     );
-    console.log("reg", Math.min.apply(Math, regression.demand.regression.price), 
-    Math.min.apply(Math, regression.supply.regression.price))
+    console.log("reg", Math.min.apply(Math, regression.demand.regression.price),
+      Math.min.apply(Math, regression.supply.regression.price))
   }, [changeGraph]);
 
   return (
