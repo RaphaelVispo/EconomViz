@@ -2,7 +2,7 @@ import {
   Button, Col, Container, Form, Row,
 } from 'react-bootstrap';
 import React, {
-  useState, useContext,
+  useState, useContext, useEffect,
 } from 'react';
 import ReactSlider from 'react-slider';
 import { usePlots } from '../../App';
@@ -19,6 +19,7 @@ export function MatrixInput() {
     id: 2
   }]);
   const {
+    original,
     setOriginal, regression,
     changeGraph, setChangeGraph
   } = useContext(usePlots);
@@ -77,6 +78,37 @@ export function MatrixInput() {
     }));
   };
 
+  useEffect(() => {
+    console.log(DemandFields)
+  })
+
+  useEffect(() => {
+    setDemandFields(() => (
+      original.demand.original.qd.map((val, i) => {
+        return {
+          id: i + 1,
+          qd: original.demand.original.qd[i],
+          price: original.demand.original.price[i]
+        }
+      }
+      )
+
+    ))
+    setSupplyFields(() => (
+      original.supply.original.qd.map((val, i) => {
+        return {
+          id: i + 1,
+          qd: original.supply.original.qd[i],
+          price: original.supply.original.price[i]
+        }
+      }
+      )
+
+    ))
+
+
+  }, [original])
+
   return (
     <Container>
       <Form>
@@ -96,7 +128,7 @@ export function MatrixInput() {
                   <Row fluid className="my-1">
                     <Col xs >
                       <Form.Control
-                        value={field.x}
+                        value={field.qd}
                         name="qd"
                         onChange={(e) => handleChangeInputDemand(i, e)}
                         type="text"
@@ -106,7 +138,7 @@ export function MatrixInput() {
 
                     <Col xs >
                       <Form.Control
-                        value={field.y}
+                        value={field.price}
                         name="price"
                         onChange={(e) => handleChangeInputDemand(i, e)}
                         type="text"
@@ -148,7 +180,7 @@ export function MatrixInput() {
                   <Row fluid className="my-1">
                     <Col xs >
                       <Form.Control
-                        value={field.x}
+                        value={field.qd}
                         name="qd"
                         onChange={(e) => handleChangeInputSupply(i, e)}
                         type="text"
@@ -158,7 +190,7 @@ export function MatrixInput() {
 
                     <Col xs >
                       <Form.Control
-                        value={field.y}
+                        value={field.price}
                         name="price"
                         onChange={(e) => handleChangeInputSupply(i, e)}
                         type="text"
@@ -205,7 +237,7 @@ export function MatrixInput() {
             markClassName="customSlider-mark"
             marks={20}
             min={regression.priceEquilibrium[1]}
-            max={Math.min(Math.max.apply(Math, regression.demand.regression.price), 
+            max={Math.min(Math.max.apply(Math, regression.demand.regression.price),
               Math.max.apply(Math, regression.supply.regression.price))}
             defaultValue={changeGraph.priceFloor}
             onChange={(value) => {
@@ -217,7 +249,7 @@ export function MatrixInput() {
           />}
           <br />
           <br />
-          
+
           <Form.Check // price cieling
             type='checkbox'
             label={`Price Ceiling`}
@@ -225,7 +257,7 @@ export function MatrixInput() {
             onChange={() => {
               setChangeGraph((prev) => ({
                 ...prev,
-                showPriceCeiling: !changeGraph.priceCeiling
+                showPriceCeiling: !changeGraph.showPriceCeiling
               }))
             }}
           />
@@ -236,7 +268,7 @@ export function MatrixInput() {
             markClassName="customSlider-mark"
             marks={100}
             defaultValue={changeGraph.priceCeiling}
-            min={Math.max(Math.min.apply(Math, regression.demand.regression.price), 
+            min={Math.max(Math.min.apply(Math, regression.demand.regression.price),
               Math.min.apply(Math, regression.supply.regression.price))}
             max={regression.priceEquilibrium[1]}
             onChange={(value) => {
