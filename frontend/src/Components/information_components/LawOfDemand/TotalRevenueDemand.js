@@ -6,6 +6,7 @@ import { Col, Container, Button, Row, Form } from 'react-bootstrap';
 
 export default function TotalRevenueDemand() {
   const {
+    listRevenue, setListRevenue,
     regression, trevenue, setTrevenue,
   } = useContext(usePlots);
 
@@ -14,16 +15,23 @@ export default function TotalRevenueDemand() {
   const Total = demandRegressionQd * demandRegressionP;
 
 
-  const [revenue, setRevenue] = useState([{
-    id: 0,
-    show: true,
-    value: 0
-  }, {
-    id: 1,
-    show: true,
-    value: 0
-  }
-  ]);
+  const [revenue, setRevenue] = useState([{}]);
+
+  const handleAddRevenue  = (id) => {
+    setRevenue([...revenue, { id: id + 2 }]);
+    setListRevenue([...revenue, { id: id + 2, show: true, value:0}])
+  };
+
+  const handleSubtractRevenue = (i) => {
+    const values = [...revenue];
+    values.splice(i, 1);
+    setRevenue([...values]);
+    setListRevenue([...values])
+  };
+
+  useEffect(()=>{
+    setRevenue(()=> listRevenue)
+  }, [])
 
 
 
@@ -44,7 +52,7 @@ export default function TotalRevenueDemand() {
                       let newArr = [...revenue];
                       newArr[i].show = !field.show;
                       setRevenue(newArr);
-
+                      setListRevenue(newArr)
                     }}
                   />
                   </Col>
@@ -57,14 +65,14 @@ export default function TotalRevenueDemand() {
                     <Button
                       className="mx-1"
                       type="button"
-                      onClick={() => handleAddDemand(i)}
+                      onClick={() => handleAddRevenue(i)}
                     >
                       +
                     </Button>
                     <Button
                       disabled={field.id === 0}
                       type="button"
-                      onClick={() => handleSubtractDemand(i)}
+                      onClick={() => handleSubtractRevenue(i)}
                     >
                       -
                     </Button>
@@ -101,6 +109,7 @@ export default function TotalRevenueDemand() {
                       newArr[i].value = e;
 
                       setRevenue(newArr);
+                      setListRevenue(newArr)
                     }
                     }
                   />

@@ -67,10 +67,15 @@ function App() {
   });
 
   const [trevenue, setTrevenue] = useState(0);
-  const [range, setRange] = useState({
-    qdmax: 0,
-    pricemax: 0,
-  });
+  const [listRevenue, setListRevenue] = useState([{
+
+  }])
+  const [range, setRange] = useState([{
+    id: 0,
+    show: true,
+    value: 0
+  }
+  ]);
 
   useEffect(() => {
     solveLinearRegression(
@@ -112,6 +117,8 @@ function App() {
         setTrevenue,
         range,
         setRange,
+        listRevenue, 
+        setListRevenue
       }}
       >
 
