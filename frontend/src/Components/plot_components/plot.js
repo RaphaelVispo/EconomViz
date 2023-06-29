@@ -8,7 +8,8 @@ export function PlotLaw() {
     regression,
     range,
     trevenue,
-    changeGraph
+    changeGraph,
+    listSupplyRevenue,
   } = useContext(usePlots);
 
   const [plotWidth, setPlotWidth] = useState(0);
@@ -34,14 +35,16 @@ export function PlotLaw() {
   });
 
   const [revenue, setRevenue] = useState([{}]);
+  const [supplyCircle, setsupplyCircle] = useState([{}]);
   useEffect(() => {
     setRevenue(() => listRevenue)
-  }, [listRevenue])
+    setsupplyCircle(() => listSupplyRevenue)
+  }, [listRevenue, listSupplyRevenue])
 
 
   const showDemandCircle =
     revenue.map((field, i) => (
-      field.show && { // Demand point
+      !field.show && { // Demand point
         type: 'circle',
         xref: 'x',
         yref: 'y',
@@ -57,21 +60,58 @@ export function PlotLaw() {
       }))
 
   const showDemandBox = revenue.map((field, i) => (
-    field.show && {
+    !field.show && {
+      text: 'P'+i,
       type: 'rect',
       xref: 'x',
       yref: 'y',
-      x0: 0,
-      y0: 0,
+      x0: -1,
+      y0: -1,
       x1: regression.demand.regression.qd[field.value],
       y1: regression.demand.regression.price[field.value],
-      fillcolor: '#adadad',
-      opacity: 0.5,
       layer: "below",
       line: {
         dash: 'dash',
         width: 5,
         color: 'blue',
+        opacity: 1
+      }
+
+
+    }))
+
+  const showSupplyCircle =
+    supplyCircle.map((field, i) => (
+      field.show && { // Demand point
+        type: 'circle',
+        xref: 'x',
+        yref: 'y',
+        x0: regression.supply.regression.qd[field.value] - 0.75, // X coordinate of the dot
+        y0: regression.supply.regression.price[field.value] - 0.75, // Y coordinate of the dot
+        x1: regression.supply.regression.qd[field.value] + 0.75, // X coordinate of the dot
+        y1: regression.supply.regression.price[field.value] + 0.75, // Y coordinate of the dot
+        fillcolor: 'red', // Color of the dot
+        opacity: 1,
+        line: {
+          width: 0,
+        },
+      }))
+
+  const showSupplyBox = supplyCircle.map((field, i) => (
+    field.show && {
+      type: 'rect',
+      xref: 'x',
+      yref: 'y',
+      x0: -1,
+      y0: -1,
+      x1: regression.supply.regression.qd[field.value],
+      y1: regression.supply.regression.price[field.value],
+      opacity: 1,
+      layer: "below",
+      line: {
+        dash: 'dash',
+        width: 5,
+        color: 'red',
         opacity: 1
       }
 
@@ -85,7 +125,14 @@ export function PlotLaw() {
   return (
     <Plot
       data={[
-
+        {
+          x: regression.supply.regression.qd,
+          y: regression.supply.regression.price,
+          type: 'line',
+          marker: { color: 'red' },
+          line: { width: 7 },
+          name: 'Supply Regression',
+        },
         {
           x: regression.demand.regression.qd,
           y: regression.demand.regression.price,
@@ -122,12 +169,13 @@ export function PlotLaw() {
           y: -0.2, // Set the yanchor value to "bottom"
           x: 0,
         },
-    
+
 
         shapes: [
           ...showDemandCircle,
           ...showDemandBox,
-          ...arrows,
+          ...showSupplyCircle,
+          ...showSupplyBox,
 
           regression.priceEquilibrium[0] && { // equilibrium point
             type: 'circle',
@@ -212,7 +260,7 @@ export function PlotLaw() {
               dash: 'dash',
             },
           },
-    
+
           (changeGraph.showPriceCeiling && regression.priceCeilingPoints[0][0]) && {
             type: 'circle',
             xref: 'x',
@@ -223,14 +271,14 @@ export function PlotLaw() {
             y1: regression.priceCeilingPoints[0][1] + 0.75, // Y coordinate of the dot
             fillcolor: 'blue', // Color of the dot
             layer: "above",
-    
+
             opacity: 1,
             line: {
               width: 0,
-    
+
             },
           },
-    
+
           (changeGraph.showPriceCeiling && regression.priceCeilingPoints[1][0]) && {
             type: 'circle',
             xref: 'x',
@@ -246,7 +294,7 @@ export function PlotLaw() {
               width: 0,
             },
           },
-    
+
 
         ],
       }}

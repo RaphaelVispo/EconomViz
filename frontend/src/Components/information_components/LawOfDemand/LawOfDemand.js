@@ -7,8 +7,11 @@ import ElasticityDemand from './ElasticityDemand';
 
 export function LawOfDemand() {
   const {
-    regression
+    regression,
+
   } = useContext(usePlots);
+
+
   return (
     <Container className="p-3">
 

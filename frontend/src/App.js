@@ -68,6 +68,12 @@ function App() {
 
   const [trevenue, setTrevenue] = useState(0);
   const [listRevenue, setListRevenue] = useState([{
+    id: 0,
+    show: false,
+    value: 0,
+
+  }])
+  const [listSupplyRevenue, setListSupplyRevenue] = useState([{
 
   }])
   const [range, setRange] = useState([{
@@ -118,7 +124,9 @@ function App() {
         range,
         setRange,
         listRevenue, 
-        setListRevenue
+        setListRevenue,
+        listSupplyRevenue, 
+        setListSupplyRevenue
       }}
       >
 

@@ -17,9 +17,9 @@ export default function TotalRevenueDemand() {
 
   const [revenue, setRevenue] = useState([{}]);
 
-  const handleAddRevenue  = (id) => {
+  const handleAddRevenue = (id) => {
     setRevenue([...revenue, { id: id + 2 }]);
-    setListRevenue([...revenue, { id: id + 2, show: true, value:0}])
+    setListRevenue([...revenue, { id: id + 2, show: false, value: 0 }])
   };
 
   const handleSubtractRevenue = (i) => {
@@ -29,8 +29,8 @@ export default function TotalRevenueDemand() {
     setListRevenue([...values])
   };
 
-  useEffect(()=>{
-    setRevenue(()=> listRevenue)
+  useEffect(() => {
+    setRevenue(() => listRevenue)
   }, [])
 
 
@@ -40,57 +40,69 @@ export default function TotalRevenueDemand() {
       <Form>
         {
           revenue.map((field, i) => {
-            console.log("field", field)
             return (
               <Container xs className='p-4'>
                 <Row>
-                  <Col xs = {1}>
-                  <Form.Check // prettier-ignore
-                    type='checkbox'
-                    checked={field.show }
-                    onChange={() => {
-                      let newArr = [...revenue];
-                      newArr[i].show = !field.show;
-                      setRevenue(newArr);
-                      setListRevenue(newArr)
-                    }}
-                  />
+                  <Col xs={12} md={8}>
+                    <Row>
+                      <Col xs={1}>
+                        <Form.Check // prettier-ignore
+                          type='checkbox'
+                          checked={!field.show}
+                          onChange={() => {
+                            let newArr = [...revenue];
+                            newArr[i].show = !field.show;
+                            setRevenue(newArr);
+                            setListRevenue(newArr)
+                          }}
+                        />
+                      </Col>
+
+                      <Col xs={11}>
+                        <InlineMath math={`P_${i} = ${parseFloat(regression.demand.regression.price[field.value]).toFixed(2)} ~~
+                    Q_${i} = ${parseFloat(regression.demand.regression.qd[field.value]).toFixed(2)}`} />
+
+                      </Col>
+                    </Row>
+
+                  </Col>
+                  <Col xs={6} md={4}>
+                    <Row>
+                      <Col xs={9} >
+                        <Button
+                          className="mx-1"
+                          type="button"
+                          onClick={() => handleAddRevenue(i)}
+                        >
+                          +
+                        </Button>
+                        <Button
+                          disabled={field.id === 0}
+                          type="button"
+                          onClick={() => handleSubtractRevenue(i)}
+                        >
+                          -
+                        </Button>
+                      </Col>
+                      <Col xs={3}>
+                        <Button
+                          type="button"
+                          onClick={() => {
+                            setTrevenue((val) => {
+                              return field.value
+                            })
+                          }}
+                        >
+                          Solve
+                        </Button>
+                      </Col>
+                    </Row>
                   </Col>
 
-                  <Col xs={4}>
-                    <InlineMath math={`P_${i} = ${parseFloat(regression.demand.regression.price[field.value]).toFixed(2)}`} />
 
-                  </Col>
-                  <Col xs={4}>
-                    <Button
-                      className="mx-1"
-                      type="button"
-                      onClick={() => handleAddRevenue(i)}
-                    >
-                      +
-                    </Button>
-                    <Button
-                      disabled={field.id === 0}
-                      type="button"
-                      onClick={() => handleSubtractRevenue(i)}
-                    >
-                      -
-                    </Button>
-                  </Col>
-                  <Col xs={3}>
-                    <Button
-                      type="button"
-                      onClick={() => {
-                        setTrevenue((val) => {
-                          return field.value
-                        })
-                      }}
-                    >
-                      Solve
-                    </Button>
-                  </Col>
+
+
                 </Row>
-
                 <Col >
                   <ReactSlider
                     key={field.id}
@@ -102,7 +114,7 @@ export default function TotalRevenueDemand() {
                     min={0}
                     max={regression.demand.regression.qd.length - 1}
                     defaultValue={0}
-                    disabled = {!field.show}
+                    disabled={field.show}
                     value={field.value}
                     onChange={(e) => {
                       let newArr = [...revenue];
@@ -119,7 +131,7 @@ export default function TotalRevenueDemand() {
               </Container>)
 
           })}
-      </Form>
+      </Form >
 
 
 
