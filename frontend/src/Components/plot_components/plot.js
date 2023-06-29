@@ -82,7 +82,7 @@ export function PlotLaw() {
 
   const showSupplyCircle =
     supplyCircle.map((field, i) => (
-      field.show && { // Demand point
+      !field.show && { // Demand point
         type: 'circle',
         xref: 'x',
         yref: 'y',
@@ -98,7 +98,7 @@ export function PlotLaw() {
       }))
 
   const showSupplyBox = supplyCircle.map((field, i) => (
-    field.show && {
+    !field.show && {
       type: 'rect',
       xref: 'x',
       yref: 'y',

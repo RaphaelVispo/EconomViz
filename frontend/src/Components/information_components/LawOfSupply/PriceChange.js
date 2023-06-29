@@ -42,7 +42,7 @@ export default function ElasticitySupply() {
                   <Col xs={1}>
                     <Form.Check // prettier-ignore
                       type='checkbox'
-                      checked={field.show}
+                      checked={!field.show}
                       onChange={() => {
                         let newArr = [...revenue];
                         newArr[i].show = !field.show;
@@ -96,7 +96,7 @@ export default function ElasticitySupply() {
                     min={0}
                     max={regression.demand.regression.qd.length - 1}
                     defaultValue={0}
-                    disabled={!field.show}
+                    disabled={field.show}
                     value={field.value}
                     onChange={(e) => {
                       let newArr = [...revenue];

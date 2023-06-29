@@ -199,7 +199,7 @@ export function MatrixInput() {
                         value={field.qd}
                         name="qd"
                         onChange={(e) => handleChangeInputSupply(i, e)}
-                        type="text"
+                        type="number"
                         placeholder="Value"
                       />
                     </Col>
@@ -209,7 +209,7 @@ export function MatrixInput() {
                         value={field.price}
                         name="price"
                         onChange={(e) => handleChangeInputSupply(i, e)}
-                        type="text"
+                        type="number"
                         placeholder="Value"
                       />
                     </Col>
