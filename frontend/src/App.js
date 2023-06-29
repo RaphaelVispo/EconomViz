@@ -63,14 +63,25 @@ function App() {
     priceEquilibrium: [],
     priceCeilingPoints: [],
     priceFloorPoints: [],
-    
+
   });
 
   const [trevenue, setTrevenue] = useState(0);
-  const [range, setRange] = useState({
-    qdmax: 0,
-    pricemax: 0,
-  });
+  const [listRevenue, setListRevenue] = useState([{
+    id: 0,
+    show: false,
+    value: 0,
+
+  }])
+  const [listSupplyRevenue, setListSupplyRevenue] = useState([{
+
+  }])
+  const [range, setRange] = useState([{
+    id: 0,
+    show: true,
+    value: 0
+  }
+  ]);
 
   useEffect(() => {
     solveLinearRegression(
@@ -95,8 +106,8 @@ function App() {
       setRange,
       false,
     );
-    console.log("reg", Math.min.apply(Math, regression.demand.regression.price), 
-    Math.min.apply(Math, regression.supply.regression.price))
+    console.log("reg", Math.min.apply(Math, regression.demand.regression.price),
+      Math.min.apply(Math, regression.supply.regression.price))
   }, [changeGraph]);
 
   return (
@@ -112,6 +123,10 @@ function App() {
         setTrevenue,
         range,
         setRange,
+        listRevenue, 
+        setListRevenue,
+        listSupplyRevenue, 
+        setListSupplyRevenue
       }}
       >
 

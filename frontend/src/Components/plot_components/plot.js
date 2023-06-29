@@ -4,10 +4,12 @@ import { usePlots } from '../../App';
 
 export function PlotLaw() {
   const {
+    listRevenue,
     regression,
     range,
     trevenue,
-    changeGraph
+    changeGraph,
+    listSupplyRevenue,
   } = useContext(usePlots);
 
   const [plotWidth, setPlotWidth] = useState(0);
@@ -32,10 +34,97 @@ export function PlotLaw() {
     setPlotWidth(document.body.clientWidth);
   });
 
+  const [revenue, setRevenue] = useState([{}]);
+  const [supplyCircle, setsupplyCircle] = useState([{}]);
+  useEffect(() => {
+    setRevenue(() => listRevenue)
+    setsupplyCircle(() => listSupplyRevenue)
+  }, [listRevenue, listSupplyRevenue])
+
+
+  const showDemandCircle =
+    revenue.map((field, i) => (
+      !field.show && { // Demand point
+        type: 'circle',
+        xref: 'x',
+        yref: 'y',
+        x0: regression.demand.regression.qd[field.value] - 0.75, // X coordinate of the dot
+        y0: regression.demand.regression.price[field.value] - 0.75, // Y coordinate of the dot
+        x1: regression.demand.regression.qd[field.value] + 0.75, // X coordinate of the dot
+        y1: regression.demand.regression.price[field.value] + 0.75, // Y coordinate of the dot
+        fillcolor: 'blue', // Color of the dot
+        opacity: 1,
+        line: {
+          width: 0,
+        },
+      }))
+
+  const showDemandBox = revenue.map((field, i) => (
+    !field.show && {
+      text: 'P'+i,
+      type: 'rect',
+      xref: 'x',
+      yref: 'y',
+      x0: -1,
+      y0: -1,
+      x1: regression.demand.regression.qd[field.value],
+      y1: regression.demand.regression.price[field.value],
+      layer: "below",
+      line: {
+        dash: 'dash',
+        width: 5,
+        color: 'blue',
+        opacity: 1
+      }
+
+
+    }))
+
+  const showSupplyCircle =
+    supplyCircle.map((field, i) => (
+      !field.show && { // Demand point
+        type: 'circle',
+        xref: 'x',
+        yref: 'y',
+        x0: regression.supply.regression.qd[field.value] - 0.75, // X coordinate of the dot
+        y0: regression.supply.regression.price[field.value] - 0.75, // Y coordinate of the dot
+        x1: regression.supply.regression.qd[field.value] + 0.75, // X coordinate of the dot
+        y1: regression.supply.regression.price[field.value] + 0.75, // Y coordinate of the dot
+        fillcolor: 'red', // Color of the dot
+        opacity: 1,
+        line: {
+          width: 0,
+        },
+      }))
+
+  const showSupplyBox = supplyCircle.map((field, i) => (
+    !field.show && {
+      type: 'rect',
+      xref: 'x',
+      yref: 'y',
+      x0: -1,
+      y0: -1,
+      x1: regression.supply.regression.qd[field.value],
+      y1: regression.supply.regression.price[field.value],
+      opacity: 1,
+      layer: "below",
+      line: {
+        dash: 'dash',
+        width: 5,
+        color: 'red',
+        opacity: 1
+      }
+
+
+    }))
+
+
+
+
+
   return (
     <Plot
       data={[
-
         {
           x: regression.supply.regression.qd,
           y: regression.supply.regression.price,
@@ -80,39 +169,13 @@ export function PlotLaw() {
           y: -0.2, // Set the yanchor value to "bottom"
           x: 0,
         },
+
+
         shapes: [
-          { // Demand point
-            type: 'circle',
-            xref: 'x',
-            yref: 'y',
-            x0: regression.demand.regression.qd[trevenue] - 0.75, // X coordinate of the dot
-            y0: regression.demand.regression.price[trevenue] - 0.75, // Y coordinate of the dot
-            x1: regression.demand.regression.qd[trevenue] + 0.75, // X coordinate of the dot
-            y1: regression.demand.regression.price[trevenue] + 0.75, // Y coordinate of the dot
-            fillcolor: 'blue', // Color of the dot
-            opacity: 1,
-            line: {
-              width: 0,
-            },
-          },
-          {
-
-            type: 'rect',
-            xref: 'x',
-            yref: 'y',
-            x0: 0,
-            y0: 0,
-            x1: regression.demand.regression.qd[trevenue],
-            y1: regression.demand.regression.price[trevenue],
-            fillcolor: '#adadad',
-            opacity: 0.5,
-            layer:"below",
-            line: {
-
-              width: 0,
-
-            },
-          },
+          ...showDemandCircle,
+          ...showDemandBox,
+          ...showSupplyCircle,
+          ...showSupplyBox,
 
           regression.priceEquilibrium[0] && { // equilibrium point
             type: 'circle',
@@ -120,7 +183,7 @@ export function PlotLaw() {
             yref: 'y',
             x0: regression.priceEquilibrium[0] - 0.75, // X coordinate of the dot
             y0: regression.priceEquilibrium[1] - 0.75, // Y coordinate of the dot
-            x1: regression.priceEquilibrium[0]+ 0.75, // X coordinate of the dot
+            x1: regression.priceEquilibrium[0] + 0.75, // X coordinate of the dot
             y1: regression.priceEquilibrium[1] + 0.75, // Y coordinate of the dot
             fillcolor: 'black', // Color of the dot
             opacity: 1,
@@ -130,8 +193,9 @@ export function PlotLaw() {
             },
           },
 
+
           // price floor
-          (changeGraph.showPriceFloor && regression.priceFloorPoints[0][0]) &&{
+          (changeGraph.showPriceFloor && regression.priceFloorPoints[0][0]) && {
             type: 'line', // price floor line
             xref: 'x',
             yref: 'y',
@@ -146,16 +210,16 @@ export function PlotLaw() {
             },
           },
 
-          (changeGraph.showPriceFloor && regression.priceFloorPoints[0][0]) &&{
+          (changeGraph.showPriceFloor && regression.priceFloorPoints[0][0]) && {
             type: 'circle',
             xref: 'x',
             yref: 'y',
-            x0: regression.priceFloorPoints[0][0]- 0.75, // X coordinate of the dot
+            x0: regression.priceFloorPoints[0][0] - 0.75, // X coordinate of the dot
             y0: regression.priceFloorPoints[0][1] - 0.75, // Y coordinate of the dot
-            x1: regression.priceFloorPoints[0][0]+ 0.75, // X coordinate of the dot
+            x1: regression.priceFloorPoints[0][0] + 0.75, // X coordinate of the dot
             y1: regression.priceFloorPoints[0][1] + 0.75, // Y coordinate of the dot
             fillcolor: 'blue', // Color of the dot
-            layer:"above",
+            layer: "above",
 
             opacity: 1,
             line: {
@@ -164,16 +228,16 @@ export function PlotLaw() {
             },
           },
 
-          (changeGraph.showPriceFloor && regression.priceFloorPoints[1][0]) &&{
+          (changeGraph.showPriceFloor && regression.priceFloorPoints[1][0]) && {
             type: 'circle',
             xref: 'x',
             yref: 'y',
-            x0: regression.priceFloorPoints[1][0]- 0.75, // X coordinate of the dot
+            x0: regression.priceFloorPoints[1][0] - 0.75, // X coordinate of the dot
             y0: regression.priceFloorPoints[1][1] - 0.75, // Y coordinate of the dot
-            x1: regression.priceFloorPoints[1][0]+ 0.75, // X coordinate of the dot
+            x1: regression.priceFloorPoints[1][0] + 0.75, // X coordinate of the dot
             y1: regression.priceFloorPoints[1][1] + 0.75, // Y coordinate of the dot
             fillcolor: 'red', // Color of the dot
-            layer:"above",
+            layer: "above",
             opacity: 1,
             line: {
               width: 0,
@@ -182,7 +246,7 @@ export function PlotLaw() {
 
           // price celing 
           // price floor
-          (changeGraph.showPriceCeiling && regression.priceCeilingPoints[0][0]) &&{
+          (changeGraph.showPriceCeiling && regression.priceCeilingPoints[0][0]) && {
             type: 'line', // price floor line
             xref: 'x',
             yref: 'y',
@@ -197,16 +261,16 @@ export function PlotLaw() {
             },
           },
 
-          (changeGraph.showPriceCeiling && regression.priceCeilingPoints[0][0]) &&{
+          (changeGraph.showPriceCeiling && regression.priceCeilingPoints[0][0]) && {
             type: 'circle',
             xref: 'x',
             yref: 'y',
-            x0: regression.priceCeilingPoints[0][0]- 0.75, // X coordinate of the dot
+            x0: regression.priceCeilingPoints[0][0] - 0.75, // X coordinate of the dot
             y0: regression.priceCeilingPoints[0][1] - 0.75, // Y coordinate of the dot
-            x1: regression.priceCeilingPoints[0][0]+ 0.75, // X coordinate of the dot
+            x1: regression.priceCeilingPoints[0][0] + 0.75, // X coordinate of the dot
             y1: regression.priceCeilingPoints[0][1] + 0.75, // Y coordinate of the dot
             fillcolor: 'blue', // Color of the dot
-            layer:"above",
+            layer: "above",
 
             opacity: 1,
             line: {
@@ -215,21 +279,22 @@ export function PlotLaw() {
             },
           },
 
-          (changeGraph.showPriceCeiling && regression.priceCeilingPoints[1][0]) &&{
+          (changeGraph.showPriceCeiling && regression.priceCeilingPoints[1][0]) && {
             type: 'circle',
             xref: 'x',
             yref: 'y',
-            x0: regression.priceCeilingPoints[1][0]- 0.75, // X coordinate of the dot
+            x0: regression.priceCeilingPoints[1][0] - 0.75, // X coordinate of the dot
             y0: regression.priceCeilingPoints[1][1] - 0.75, // Y coordinate of the dot
-            x1: regression.priceCeilingPoints[1][0]+ 0.75, // X coordinate of the dot
+            x1: regression.priceCeilingPoints[1][0] + 0.75, // X coordinate of the dot
             y1: regression.priceCeilingPoints[1][1] + 0.75, // Y coordinate of the dot
             fillcolor: 'red', // Color of the dot
-            layer:"above",
+            layer: "above",
             opacity: 1,
             line: {
               width: 0,
             },
           },
+
 
         ],
       }}
