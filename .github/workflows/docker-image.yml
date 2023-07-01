@@ -18,3 +18,8 @@ jobs:
       run: |
         cd backend
         docker build . --file Dockerfile --tag backend:$(date +%s)
+    - name: Frontend
+      run: |
+        cd frontend
+        docker build . --file Dockerfile.prod --tag frontend:$(date +%s)
+
