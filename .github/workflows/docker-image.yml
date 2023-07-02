@@ -31,7 +31,7 @@ jobs:
         context: ./backend
         file: ./backend/Dockerfile
         push: true
-        tags: backend
+        tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         
     - name: Frontend
@@ -40,7 +40,7 @@ jobs:
         context: ./frontend
         file: ./frontend/Dockerfile.prod
         push: true
-        tags: frontend
+        tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         
 
