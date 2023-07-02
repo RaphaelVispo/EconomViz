@@ -17,10 +17,10 @@ jobs:
         include:
           - contexts: ./backend
             dockerfile: ./backend/Dockerfile
-            image: rsvispo/economviz/backend
+            image: rsvispo/economviz
           - contexts: ./frontend
             dockerfile: ./frontend/Dockerfile.prod
-            image: rsvispo/economviz/frontend
+            image: rsvispo/economviz
 
     steps:
     - uses: actions/checkout@v3
