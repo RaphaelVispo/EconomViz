@@ -42,7 +42,7 @@ jobs:
         context: ./${{ matrix.contexts }}
         file: ${{ matrix.dockerfile }}
         push: true
-        tags: ${{ matrix.contexts }}
+        tags: rsvispo/economviz:${{ matrix.contexts }}
         labels: ${{ steps.meta.outputs.labels }}
 
 
