@@ -16,7 +16,7 @@ jobs:
         contexts : [backend, frontend ]
         include:
           - contexts: backend
-            dockerfile: ./backend/Dockerfile
+            dockerfile: ./backend/Dockerfile.prod
             image: rsvispo/economviz
           - contexts: frontend
             dockerfile: ./frontend/Dockerfile.prod
