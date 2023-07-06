@@ -70,18 +70,7 @@ export default function ElasticitySupply() {
                     -
                   </Button>
                 </Col>
-                {/* <Col xs={3}>
-                    <Button
-                      type="button"
-                      onClick={() => {
-                        setTrevenue((val) => {
-                          return field.value
-                        })
-                      }}
-                    >
-                      Solve
-                    </Button>
-                  </Col> */}
+
               </Row>
 
               <Col>
@@ -163,21 +152,6 @@ export default function ElasticitySupply() {
         }}
       />
 
-      {/* <br />
-      <br />
-
-      <h5> Own Price Elasticity of Demand </h5>
-      <h6> Using Arc Elasticity </h6>
-      <p>
-        The own price elasticity of demend measures the responsiveness of
-        Quantity Demanded of a good to change in its own price
-      </p>
-      <BlockMath
-        math={`\\big | \\epsilon \\big |
-              = \\left | \\frac{${Q2.toFixed(2)} - ${Q1.toFixed(2)}}{${Q2.toFixed(2)} + ${Q1.toFixed(2)}} \\div
-             \\frac{${P2.toFixed(2)} - ${P1.toFixed(2)}}{${P2.toFixed(2)} + ${P1.toFixed(2)}} \\right|
-             \\allowbreak =| ${elasticity.toFixed(2) === '-0.00' ? '0.00' : elasticity.toFixed(2)} | = ${Math.abs(elasticity.toFixed(2))}`}
-      /> */}
 
     </>
 
