@@ -1,8 +1,10 @@
 import { BlockMath, InlineMath } from 'react-katex';
 import React, { useContext, useState, useEffect } from 'react';
 import ReactSlider from 'react-slider';
+import {
+  Form, Container, Row, Col, Button,
+} from 'react-bootstrap';
 import { usePlots } from '../../../App';
-import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 
 export default function ElasticitySupply() {
   const {
@@ -14,40 +16,39 @@ export default function ElasticitySupply() {
 
   const [revenue, setRevenue] = useState([{}]);
   useEffect(() => {
-    setRevenue(() => listSupplyRevenue)
-  }, [listSupplyRevenue])
+    setRevenue(() => listSupplyRevenue);
+  }, [listSupplyRevenue]);
 
   const handleAddRevenue = (id) => {
     setRevenue([...revenue, { id: id + 2 }]);
-    setListSupplyRevenue([...revenue, { id: id + 2, show: true, value: 0 }])
+    setListSupplyRevenue([...revenue, { id: id + 2, show: true, value: 0 }]);
   };
 
   const handleSubtractRevenue = (i) => {
     const values = [...revenue];
     values.splice(i, 1);
     setRevenue([...values]);
-    setListSupplyRevenue([...values])
+    setListSupplyRevenue([...values]);
   };
-
 
   return (
     <>
       <Form>
         {
           revenue.map((field, i) => {
-            console.log("field", field)
+            console.log('field', field);
             return (
-              <Container xs className='p-4'>
+              <Container xs className="p-4">
                 <Row>
                   <Col xs={1}>
                     <Form.Check // prettier-ignore
-                      type='checkbox'
+                      type="checkbox"
                       checked={!field.show}
                       onChange={() => {
-                        let newArr = [...revenue];
+                        const newArr = [...revenue];
                         newArr[i].show = !field.show;
                         setRevenue(newArr);
-                        setListSupplyRevenue(newArr)
+                        setListSupplyRevenue(newArr);
                       }}
                     />
                   </Col>
@@ -85,7 +86,7 @@ export default function ElasticitySupply() {
                   </Col> */}
                 </Row>
 
-                <Col >
+                <Col>
                   <ReactSlider
                     key={field.id}
                     className="customSlider"
@@ -99,20 +100,20 @@ export default function ElasticitySupply() {
                     disabled={field.show}
                     value={field.value}
                     onChange={(e) => {
-                      let newArr = [...revenue];
+                      const newArr = [...revenue];
                       newArr[i].value = e;
 
                       setRevenue(newArr);
-                      setListSupplyRevenue(newArr)
-                    }
-                    }
+                      setListSupplyRevenue(newArr);
+                    }}
                   />
 
                 </Col>
 
-              </Container>)
-
-          })}
+              </Container>
+            );
+          })
+}
       </Form>
       <br />
 
@@ -133,8 +134,8 @@ export default function ElasticitySupply() {
             ...plots,
             supply: {
               ...plots.supply,
-              slope: slope
-            }
+              slope,
+            },
           }));
         }}
       />
@@ -158,8 +159,8 @@ export default function ElasticitySupply() {
             ...plots,
             supply: {
               ...plots.supply,
-              shift: shift
-            }
+              shift,
+            },
 
           }));
         }}
@@ -176,7 +177,7 @@ export default function ElasticitySupply() {
       </p>
       <BlockMath
         math={`\\big | \\epsilon \\big |
-              = \\left | \\frac{${Q2.toFixed(2)} - ${Q1.toFixed(2)}}{${Q2.toFixed(2)} + ${Q1.toFixed(2)}} \\div 
+              = \\left | \\frac{${Q2.toFixed(2)} - ${Q1.toFixed(2)}}{${Q2.toFixed(2)} + ${Q1.toFixed(2)}} \\div
              \\frac{${P2.toFixed(2)} - ${P1.toFixed(2)}}{${P2.toFixed(2)} + ${P1.toFixed(2)}} \\right|
              \\allowbreak =| ${elasticity.toFixed(2) === '-0.00' ? '0.00' : elasticity.toFixed(2)} | = ${Math.abs(elasticity.toFixed(2))}`}
       /> */}

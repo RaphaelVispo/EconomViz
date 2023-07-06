@@ -11,17 +11,17 @@ export function MatrixInput() {
   const [DemandFields, setDemandFields] = useState([{
     id: 1,
   }, {
-    id: 2
+    id: 2,
   }]);
   const [SupplyFields, setSupplyFields] = useState([{
     id: 1,
   }, {
-    id: 2
+    id: 2,
   }]);
   const {
     original,
     setOriginal, regression,
-    changeGraph, setChangeGraph
+    changeGraph, setChangeGraph,
   } = useContext(usePlots);
 
   // Demand Functions
@@ -60,7 +60,6 @@ export function MatrixInput() {
 
   // submit function
   const onSubmit = () => {
-   
     setOriginal((plot) => ({
 
       demand: {
@@ -79,52 +78,37 @@ export function MatrixInput() {
     }));
   };
 
-
-
-
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
-
     event.preventDefault();
-    onSubmit()
+    onSubmit();
   };
 
-
-
   useEffect(() => {
-
     setDemandFields(() => (
-      original.demand.original.qd.map((val, i) => {
-        return {
-          id: i + 1,
-          qd: original.demand.original.qd[i],
-          price: original.demand.original.price[i]
-        }
-      }
-      )
+      original.demand.original.qd.map((val, i) => ({
+        id: i + 1,
+        qd: original.demand.original.qd[i],
+        price: original.demand.original.price[i],
+      }))
 
-    ))
+    ));
     setSupplyFields(() => (
-      original.supply.original.qd.map((val, i) => {
-        return {
-          id: i + 1,
-          qd: original.supply.original.qd[i],
-          price: original.supply.original.price[i]
-        }
-      }
-      )
+      original.supply.original.qd.map((val, i) => ({
+        id: i + 1,
+        qd: original.supply.original.qd[i],
+        price: original.supply.original.price[i],
+      }))
 
-    ))
-
-
-  }, [original])
+    ));
+  }, [original]);
 
   return (
 
     <Container>
 
-      <Form  onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <Container className="px-1">
 
           <Form.Group controlId="formField">
@@ -135,11 +119,11 @@ export function MatrixInput() {
                 <Col xs className="d-flex">
                   <p className="float-left">Price</p>
                 </Col>
-              </Row >
+              </Row>
               {
                 DemandFields.map((field, i) => (
                   <Row fluid className="my-1">
-                    <Col xs >
+                    <Col xs>
                       <Form.Control
                         required
                         value={field.qd}
@@ -150,7 +134,7 @@ export function MatrixInput() {
                       />
                     </Col>
 
-                    <Col xs >
+                    <Col xs>
                       <Form.Control
                         required
 
@@ -161,7 +145,7 @@ export function MatrixInput() {
                         placeholder="Value"
                       />
                     </Col>
-                    <Col xs >
+                    <Col xs>
                       <Button
                         className="mx-1"
                         type="button"
@@ -194,7 +178,7 @@ export function MatrixInput() {
               {
                 SupplyFields.map((field, i) => (
                   <Row fluid className="my-1">
-                    <Col xs >
+                    <Col xs>
                       <Form.Control
                         value={field.qd}
                         name="qd"
@@ -204,7 +188,7 @@ export function MatrixInput() {
                       />
                     </Col>
 
-                    <Col xs >
+                    <Col xs>
                       <Form.Control
                         value={field.price}
                         name="price"
@@ -213,7 +197,7 @@ export function MatrixInput() {
                         placeholder="Value"
                       />
                     </Col>
-                    <Col xs >
+                    <Col xs>
                       <Button
                         className="mx-1"
                         type="button"
@@ -236,70 +220,77 @@ export function MatrixInput() {
 
           </Form.Group>
           <Form.Check // prettier-ignore
-            type='checkbox'
-            label={`Price Floor`}
+            type="checkbox"
+            label="Price Floor"
             checked={changeGraph.showPriceFloor}
             onChange={() => {
               setChangeGraph((prev) => ({
                 ...prev,
-                showPriceFloor: !changeGraph.showPriceFloor
-              }))
+                showPriceFloor: !changeGraph.showPriceFloor,
+              }));
             }}
           />
-          {changeGraph.showPriceFloor && <ReactSlider
+          {changeGraph.showPriceFloor && (
+          <ReactSlider
             className="customSlider"
             thumbClassName="customSlider-thumb"
             trackClassName="customSlider-track"
             markClassName="customSlider-mark"
             marks={20}
             min={regression.priceEquilibrium[1]}
-            max={Math.min(Math.max.apply(Math, regression.demand.regression.price),
-              Math.max.apply(Math, regression.supply.regression.price))}
+            max={Math.min(
+              Math.max.apply(Math, regression.demand.regression.price),
+              Math.max.apply(Math, regression.supply.regression.price),
+            )}
             defaultValue={changeGraph.priceFloor}
             onChange={(value) => {
               setChangeGraph((plots) => ({
                 ...plots,
-                priceFloor: value
+                priceFloor: value,
               }));
             }}
-          />}
+          />
+          )}
           <br />
           <br />
 
           <Form.Check // price cieling
-            type='checkbox'
-            label={`Price Ceiling`}
+            type="checkbox"
+            label="Price Ceiling"
             checked={changeGraph.showPriceCeiling}
             onChange={() => {
               setChangeGraph((prev) => ({
                 ...prev,
-                showPriceCeiling: !changeGraph.showPriceCeiling
-              }))
+                showPriceCeiling: !changeGraph.showPriceCeiling,
+              }));
             }}
           />
-          {changeGraph.showPriceCeiling && <ReactSlider
+          {changeGraph.showPriceCeiling && (
+          <ReactSlider
             className="customSlider"
             thumbClassName="customSlider-thumb"
             trackClassName="customSlider-track"
             markClassName="customSlider-mark"
             marks={100}
             defaultValue={changeGraph.priceCeiling}
-            min={Math.max(Math.min.apply(Math, regression.demand.regression.price),
-              Math.min.apply(Math, regression.supply.regression.price))}
+            min={Math.max(
+              Math.min.apply(Math, regression.demand.regression.price),
+              Math.min.apply(Math, regression.supply.regression.price),
+            )}
             max={regression.priceEquilibrium[1]}
             onChange={(value) => {
               setChangeGraph((plots) => ({
                 ...plots,
-                priceCeiling: value
+                priceCeiling: value,
               }));
             }}
-          />}
+          />
+          )}
           <br />
           <br />
-          <Button type="submit"  >Graph</Button>
+          <Button type="submit">Graph</Button>
         </Container>
       </Form>
-
 
       <br />
       <br />
@@ -307,7 +298,6 @@ export function MatrixInput() {
       <br />
 
     </Container>
-
 
   );
 }

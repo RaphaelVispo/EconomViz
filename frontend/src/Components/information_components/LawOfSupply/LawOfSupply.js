@@ -1,14 +1,14 @@
 import { InlineMath, BlockMath } from 'react-katex';
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import {
   Container,
 } from 'react-bootstrap';
 import { usePlots } from '../../../App';
-import ElasticitySupply from './PriceChange'
+import ElasticitySupply from './PriceChange';
 
 export function LawOfSupply() {
   const {
-    regression
+    regression,
   } = useContext(usePlots);
   return (
     <Container className="p-3">
@@ -33,7 +33,8 @@ export function LawOfSupply() {
       <BlockMath> Qd = c-dP</BlockMath>
 
       <BlockMath math={String.raw`Q^* = ${parseFloat(regression.priceEquilibrium[0]).toFixed(2)},
-       P^* = ${parseFloat(regression.priceEquilibrium[1]).toFixed(2)}`} />
+       P^* = ${parseFloat(regression.priceEquilibrium[1]).toFixed(2)}`}
+      />
 
       <ElasticitySupply />
     </Container>

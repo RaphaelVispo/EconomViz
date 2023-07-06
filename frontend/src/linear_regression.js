@@ -9,12 +9,12 @@ const solveLinearRegression = async (
 ) => {
   const plots = {
     demand: { ...original.demand, ...changeGraph.demand },
-    supply: { ...original.supply, ...changeGraph.supply},
-    price_floor : changeGraph.priceFloor,
-    price_ceiling :  changeGraph.priceCeiling
-  
+    supply: { ...original.supply, ...changeGraph.supply },
+    price_floor: changeGraph.priceFloor,
+    price_ceiling: changeGraph.priceCeiling,
+
   };
-  console.log(plots)
+  console.log(plots);
 
   const res = await fetch('http://localhost:5000/api/linear_regression', {
     method: 'POST',
@@ -26,31 +26,31 @@ const solveLinearRegression = async (
 
   const resData = await res.json();
   const jsonData = JSON.parse(resData);
-  console.log(changeGraph)
+  console.log(changeGraph);
   console.log(jsonData);
 
   setRegression(() => ({
     demand: {
-      regression: jsonData.demand
+      regression: jsonData.demand,
     },
     supply: {
-      regression: jsonData.supply
+      regression: jsonData.supply,
     },
     priceEquilibrium: jsonData.equilibrum_point,
     priceCeilingPoints: jsonData.price_ceiling,
-    priceFloorPoints: jsonData.price_floor
+    priceFloorPoints: jsonData.price_floor,
   }));
 
   if (newrange) {
     setChangeGraph(() => ({
       demand: {
         slope: 0,
-        shift: 0
+        shift: 0,
       },
       supply: {
         slope: 0,
-        shift: 0
-      }
+        shift: 0,
+      },
     }));
     setRange(() => ({
       qdmax: Math.max(...jsonData.demand.qd),
@@ -59,4 +59,4 @@ const solveLinearRegression = async (
   }
 };
 
-export { solveLinearRegression,};
+export { solveLinearRegression };
