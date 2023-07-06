@@ -74,7 +74,9 @@ function App() {
 
   }]);
   const [listSupplyRevenue, setListSupplyRevenue] = useState([{
-
+    id: 0,
+    show: true,
+    value: 0,
   }]);
   const [range, setRange] = useState([{
     id: 0,

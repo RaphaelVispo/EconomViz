@@ -26,6 +26,24 @@ const solveLinearRegression = async (
   const resData = await res.json();
   const jsonData = JSON.parse(resData);
 
+  if (newrange) {
+    setRange(() => ({
+      qdmax: Math.max(...jsonData.demand.qd),
+      pricemax: Math.max(...jsonData.demand.price),
+    }));
+    setChangeGraph(() => ({
+      demand: {
+        slope: 0,
+        shift: 0,
+      },
+      supply: {
+        slope: 0,
+        shift: 0,
+      },
+    }));
+
+  }
+
   setRegression(() => ({
     demand: {
       regression: jsonData.demand,
@@ -38,22 +56,7 @@ const solveLinearRegression = async (
     priceFloorPoints: jsonData.price_floor,
   }));
 
-  if (newrange) {
-    setChangeGraph(() => ({
-      demand: {
-        slope: 0,
-        shift: 0,
-      },
-      supply: {
-        slope: 0,
-        shift: 0,
-      },
-    }));
-    setRange(() => ({
-      qdmax: Math.max(...jsonData.demand.qd),
-      pricemax: Math.max(...jsonData.demand.price),
-    }));
-  }
+
 };
 
 export { solveLinearRegression };

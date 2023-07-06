@@ -21,11 +21,7 @@ app.include_router(
 )
 
 origins = [
-    "https://economviz-production.up.railway.app/api/linear_regression",
-    "https://flowery-chickens-production.up.railway.app",
-    "http://localhost:3000",
-    "http://localhost:3000/",
-    "http://127.0.0.1:3000"
+    "http://localhost"
 ]
 app.add_middleware(
     CORSMiddleware,
