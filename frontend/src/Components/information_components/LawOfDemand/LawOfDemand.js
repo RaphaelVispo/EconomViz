@@ -1,7 +1,7 @@
 import { InlineMath, BlockMath } from 'react-katex';
 import React, { useContext } from 'react';
-import { usePlots } from '../../../App';
 import { Container } from 'react-bootstrap';
+import { usePlots } from '../../../App';
 import TotalRevenueDemand from './TotalRevenueDemand';
 import ElasticityDemand from './ElasticityDemand';
 
@@ -10,7 +10,6 @@ export function LawOfDemand() {
     regression,
 
   } = useContext(usePlots);
-
 
   return (
     <Container className="p-3">
@@ -37,7 +36,8 @@ export function LawOfDemand() {
         Equilibrium Point:
       </h4>
       <BlockMath math={regression.priceEquilibrium[0] ? String.raw`Q^* = ${parseFloat(regression.priceEquilibrium[0]).toFixed(2)}, 
-      ~~~~~~~~ P^* = ${parseFloat(regression.priceEquilibrium[1]).toFixed(2)}`: "\\text{No equilibrium point}"} />
+      ~~~~~~~~ P^* = ${parseFloat(regression.priceEquilibrium[1]).toFixed(2)}` : '\\text{No equilibrium point}'}
+      />
 
       <TotalRevenueDemand />
       <ElasticityDemand />

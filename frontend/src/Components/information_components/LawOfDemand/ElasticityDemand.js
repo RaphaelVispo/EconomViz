@@ -39,8 +39,8 @@ export default function ElasticityDemand() {
             ...plots,
             demand: {
               ...plots.demand,
-              slope: slope
-            }
+              slope,
+            },
           }));
         }}
       />
@@ -64,8 +64,8 @@ export default function ElasticityDemand() {
             ...plots,
             demand: {
               ...plots.demand,
-              shift: shift
-            }
+              shift,
+            },
 
           }));
         }}

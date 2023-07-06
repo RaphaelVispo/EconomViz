@@ -19,16 +19,16 @@ function App() {
   const [changeGraph, setChangeGraph] = useState({
     demand: {
       slope: 0,
-      shift: 0
+      shift: 0,
     },
     supply: {
       slope: 0,
-      shift: 0
+      shift: 0,
     },
     showPriceFloor: false,
     showPriceCeiling: false,
     priceFloor: 0,
-    priceCeiling: 0
+    priceCeiling: 0,
 
   });
   const [original, setOriginal] = useState({
@@ -72,15 +72,17 @@ function App() {
     show: false,
     value: 0,
 
-  }])
+  }]);
   const [listSupplyRevenue, setListSupplyRevenue] = useState([{
-
-  }])
+    id: 0,
+    show: true,
+    value: 0,
+  }]);
   const [range, setRange] = useState([{
     id: 0,
     show: true,
-    value: 0
-  }
+    value: 0,
+  },
   ]);
 
   useEffect(() => {
@@ -93,8 +95,6 @@ function App() {
       true,
       setChangeGraph,
     );
-
-
   }, [original]);
 
   useEffect(() => {
@@ -106,8 +106,6 @@ function App() {
       setRange,
       false,
     );
-    console.log("reg", Math.min.apply(Math, regression.demand.regression.price),
-      Math.min.apply(Math, regression.supply.regression.price))
   }, [changeGraph]);
 
   return (
@@ -123,10 +121,10 @@ function App() {
         setTrevenue,
         range,
         setRange,
-        listRevenue, 
+        listRevenue,
         setListRevenue,
-        listSupplyRevenue, 
-        setListSupplyRevenue
+        listSupplyRevenue,
+        setListSupplyRevenue,
       }}
       >
 
