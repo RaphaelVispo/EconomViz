@@ -1,6 +1,11 @@
 from fastapi import FastAPI
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv, dotenv_values
+
+load_dotenv()
+
+config = dotenv_values(".env") 
 
 app = FastAPI(
     title = "Economics",
@@ -19,9 +24,9 @@ app.include_router(
     tags = ['Linear Regression'],
     prefix= '/api'
 )
-
+print(config["ORIGIN"])
 origins = [
-    "http://localhost"
+    config["ORIGIN"]
 ]
 app.add_middleware(
     CORSMiddleware,
