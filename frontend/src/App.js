@@ -104,11 +104,6 @@ function App() {
       setRange,
       false,
     );
-    console.log(
-      'reg',
-      Math.min.apply(Math, regression.demand.regression.price),
-      Math.min.apply(Math, regression.supply.regression.price),
-    );
   }, [changeGraph]);
 
   return (

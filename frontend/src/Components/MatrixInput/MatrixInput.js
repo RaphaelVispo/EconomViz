@@ -78,8 +78,6 @@ export function MatrixInput() {
     }));
   };
 
-  const [validated, setValidated] = useState(false);
-
   const handleSubmit = (event) => {
     event.preventDefault();
     onSubmit();

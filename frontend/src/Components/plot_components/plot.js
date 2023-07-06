@@ -7,7 +7,6 @@ export function PlotLaw() {
     listRevenue,
     regression,
     range,
-    trevenue,
     changeGraph,
     listSupplyRevenue,
   } = useContext(usePlots);
@@ -17,7 +16,6 @@ export function PlotLaw() {
   // for first instanciation of the app
   // getting width of the
   useEffect(() => {
-    console.log(changeGraph);
     if (document.body.clientWidth > 900) {
       setPlotWidth(900);
     } else {
@@ -41,7 +39,7 @@ export function PlotLaw() {
     setsupplyCircle(() => listSupplyRevenue);
   }, [listRevenue, listSupplyRevenue]);
 
-  const showDemandCircle = revenue.map((field, i) => (
+  const showDemandCircle = revenue.map((field) => (
     !field.show && { // Demand point
       type: 'circle',
       xref: 'x',
@@ -77,7 +75,7 @@ export function PlotLaw() {
 
     }));
 
-  const showSupplyCircle = supplyCircle.map((field, i) => (
+  const showSupplyCircle = supplyCircle.map((field) => (
     !field.show && { // Demand point
       type: 'circle',
       xref: 'x',
@@ -93,7 +91,7 @@ export function PlotLaw() {
       },
     }));
 
-  const showSupplyBox = supplyCircle.map((field, i) => (
+  const showSupplyBox = supplyCircle.map((field) => (
     !field.show && {
       type: 'rect',
       xref: 'x',

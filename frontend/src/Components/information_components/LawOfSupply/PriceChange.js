@@ -1,4 +1,4 @@
-import { BlockMath, InlineMath } from 'react-katex';
+import { InlineMath } from 'react-katex';
 import React, { useContext, useState, useEffect } from 'react';
 import ReactSlider from 'react-slider';
 import {
@@ -35,44 +35,42 @@ export default function ElasticitySupply() {
     <>
       <Form>
         {
-          revenue.map((field, i) => {
-            console.log('field', field);
-            return (
-              <Container xs className="p-4">
-                <Row>
-                  <Col xs={1}>
-                    <Form.Check // prettier-ignore
-                      type="checkbox"
-                      checked={!field.show}
-                      onChange={() => {
-                        const newArr = [...revenue];
-                        newArr[i].show = !field.show;
-                        setRevenue(newArr);
-                        setListSupplyRevenue(newArr);
-                      }}
-                    />
-                  </Col>
+          revenue.map((field, i) => (
+            <Container xs className="p-4">
+              <Row>
+                <Col xs={1}>
+                  <Form.Check // prettier-ignore
+                    type="checkbox"
+                    checked={!field.show}
+                    onChange={() => {
+                      const newArr = [...revenue];
+                      newArr[i].show = !field.show;
+                      setRevenue(newArr);
+                      setListSupplyRevenue(newArr);
+                    }}
+                  />
+                </Col>
 
-                  <Col xs={4}>
-                    <InlineMath math={`P_${i} = ${parseFloat(regression.supply.regression.price[field.value]).toFixed(2)}`} />
-                  </Col>
-                  <Col xs={4}>
-                    <Button
-                      className="mx-1"
-                      type="button"
-                      onClick={() => handleAddRevenue(i)}
-                    >
-                      +
-                    </Button>
-                    <Button
-                      disabled={field.id === 0}
-                      type="button"
-                      onClick={() => handleSubtractRevenue(i)}
-                    >
-                      -
-                    </Button>
-                  </Col>
-                  {/* <Col xs={3}>
+                <Col xs={4}>
+                  <InlineMath math={`P_${i} = ${parseFloat(regression.supply.regression.price[field.value]).toFixed(2)}`} />
+                </Col>
+                <Col xs={4}>
+                  <Button
+                    className="mx-1"
+                    type="button"
+                    onClick={() => handleAddRevenue(i)}
+                  >
+                    +
+                  </Button>
+                  <Button
+                    disabled={field.id === 0}
+                    type="button"
+                    onClick={() => handleSubtractRevenue(i)}
+                  >
+                    -
+                  </Button>
+                </Col>
+                {/* <Col xs={3}>
                     <Button
                       type="button"
                       onClick={() => {
@@ -84,35 +82,34 @@ export default function ElasticitySupply() {
                       Solve
                     </Button>
                   </Col> */}
-                </Row>
+              </Row>
 
-                <Col>
-                  <ReactSlider
-                    key={field.id}
-                    className="customSlider"
-                    thumbClassName="customSlider-thumb"
-                    trackClassName="customSlider-track"
-                    markClassName="customSlider-mark"
-                    marks={20}
-                    min={0}
-                    max={regression.demand.regression.qd.length - 1}
-                    defaultValue={0}
-                    disabled={field.show}
-                    value={field.value}
-                    onChange={(e) => {
-                      const newArr = [...revenue];
-                      newArr[i].value = e;
+              <Col>
+                <ReactSlider
+                  key={field.id}
+                  className="customSlider"
+                  thumbClassName="customSlider-thumb"
+                  trackClassName="customSlider-track"
+                  markClassName="customSlider-mark"
+                  marks={20}
+                  min={0}
+                  max={regression.demand.regression.qd.length - 1}
+                  defaultValue={0}
+                  disabled={field.show}
+                  value={field.value}
+                  onChange={(e) => {
+                    const newArr = [...revenue];
+                    newArr[i].value = e;
 
-                      setRevenue(newArr);
-                      setListSupplyRevenue(newArr);
-                    }}
-                  />
+                    setRevenue(newArr);
+                    setListSupplyRevenue(newArr);
+                  }}
+                />
 
-                </Col>
+              </Col>
 
-              </Container>
-            );
-          })
+            </Container>
+          ))
 }
       </Form>
       <br />

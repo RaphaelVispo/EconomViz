@@ -87,7 +87,7 @@ export default function TotalRevenueDemand() {
                       <Button
                         type="button"
                         onClick={() => {
-                          setTrevenue((val) => field.value);
+                          setTrevenue(() => field.value);
                         }}
                       >
                         Solve

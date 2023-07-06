@@ -14,7 +14,6 @@ const solveLinearRegression = async (
     price_ceiling: changeGraph.priceCeiling,
 
   };
-  console.log(plots);
 
   const res = await fetch('http://localhost:5000/api/linear_regression', {
     method: 'POST',
@@ -26,8 +25,6 @@ const solveLinearRegression = async (
 
   const resData = await res.json();
   const jsonData = JSON.parse(resData);
-  console.log(changeGraph);
-  console.log(jsonData);
 
   setRegression(() => ({
     demand: {
