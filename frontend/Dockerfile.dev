@@ -7,4 +7,6 @@ RUN npm i -g react-scripts@5.0.0
 
 COPY . ./
 
+ENV REACT_APP_LINEAR_REG_API=http://localhost:5000/api/linear_regression
+
 CMD ["npm", "start"]
