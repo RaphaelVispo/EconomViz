@@ -17,5 +17,8 @@ COPY --from=builder /app/build /usr/share/nginx/html
 COPY docker/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 # Expose port
 EXPOSE 80
+
+# Set the env varible
+ENV LINEAR_REG_API=http://139.144.120.253:5000/api/linear_regression
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]

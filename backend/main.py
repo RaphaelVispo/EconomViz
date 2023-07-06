@@ -24,7 +24,7 @@ app.include_router(
     tags = ['Linear Regression'],
     prefix= '/api'
 )
-print(config["ORIGIN"])
+
 origins = [
     config["ORIGIN"]
 ]
