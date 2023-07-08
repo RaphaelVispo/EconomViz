@@ -15,9 +15,8 @@ const solveLinearRegression = async (
     price_ceiling: changeGraph.priceCeiling,
 
   };
-  console.log(process.env.REACT_APP_LINEAR_REG_API)
 
-  const res = await fetch(process.env.REACT_APP_LINEAR_REG_API, {
+  const res = await fetch('http://139.144.120.253:5000/api/linear_regression', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
