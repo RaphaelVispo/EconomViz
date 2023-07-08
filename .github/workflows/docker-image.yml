@@ -45,5 +45,17 @@ jobs:
         tags: rsvispo/economviz:${{ matrix.contexts }}
         labels: ${{ steps.meta.outputs.labels }}
 
+  update-ssh:
+      name: Build
+      runs-on: ubuntu-latest
+      steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: ./runUpdate.sh
 
 
