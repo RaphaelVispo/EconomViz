@@ -16,7 +16,7 @@ const solveLinearRegression = async (
 
   };
 
-  const res = await fetch('http://139.144.120.253:5000/api/linear_regression', {
+  const res = await fetch(process.env.REACT_APP_LINEAR_REG_API || 'http://economviz.com:5000/api/linear_regression', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
