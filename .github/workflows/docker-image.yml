@@ -46,7 +46,8 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
 
   update-ssh:
-      name: Build
+      needs: build
+      name: deployment
       runs-on: ubuntu-latest
       steps:
       - name: executing remote ssh commands using password
