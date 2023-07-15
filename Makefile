@@ -16,3 +16,8 @@ docker-run:
 
 	docker run -d -p 5000:5000 economviz:backend
 	docker run -d -p 3000:3000 economviz:frontend 
+
+
+docker-frontend: 	
+	docker build -t economviz:frontend -f frontend/Dockerfile.prod ./frontend
+	docker run -d -p 80:80 frontend 

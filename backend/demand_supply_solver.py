@@ -38,8 +38,8 @@ class Demand_Supply_Solver:
         demand_b, demand_a = np.polyfit(demand_df.qd, demand_df.price, deg=1)
         supply_b, supply_a = np.polyfit(supply_df.qs, supply_df.price, deg=1)
 
-        self.quantity_demanded = np.linspace(0, max(demand_df.qd), 50)
-        self.qunatity_supplied = np.linspace(0, max(supply_df.qs), 50)
+        self.quantity_demanded = np.linspace(0, max(demand_df.qd), 25)
+        self.qunatity_supplied = np.linspace(0, max(supply_df.qs), 25)
 
         self.demand_price = demand_a + demand_b * self.quantity_demanded
         self.supply_price = supply_a + supply_b * self.qunatity_supplied
