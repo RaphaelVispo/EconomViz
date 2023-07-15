@@ -1,0 +1,3 @@
+map $linear_reg {
+  default "$REACT_APP_LINEAR_REG_API";
+}
