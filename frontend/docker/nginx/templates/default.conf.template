@@ -1,0 +1,11 @@
+
+server {
+    listen 80;
+    index index.html;
+
+    location / {
+      root /usr/share/nginx/html;
+
+    }
+
+}
