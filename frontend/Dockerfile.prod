@@ -14,11 +14,11 @@ ENV NODE_ENV production
 # Copy built assets from `builder` image
 COPY --from=builder /app/build /usr/share/nginx/html
 # Add your nginx.conf
-COPY docker/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+COPY docker/nginx/templates/ /etc/nginx/templates
 # Expose port
 EXPOSE 80
 
 # Set the env varible
-ENV REACT_APP_LINEAR_REG_API=http://economviz.com:5000
+ENV LINEAR_REG_API=economviz.com
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,22 @@
+upstream uvicorn {
+    server $LINEAR_REG_API:5000;
+}
+
+proxy_cache_path /tmp/cache levels=1:2 keys_zone=my_cache:10m max_size=10g inactive=60m use_temp_path=off;
+
+server {
+    listen 80;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    location / {
+        proxy_pass http://uvicorn;
+        try_files $uri $uri/ /index.html;
+        proxy_buffering        on;
+        proxy_cache            my_cache;
+        proxy_cache_valid      200  1d;
+        proxy_cache_use_stale  error timeout invalid_header updating
+        http_500 http_502 http_503 http_504;
+    
+    }
+}
