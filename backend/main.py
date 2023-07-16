@@ -32,7 +32,7 @@ except:
     origin = os.getenv("ORIGIN")
 
 origins = [
-    "http://localhost"
+    "*"
 ]
 app.add_middleware(
     CORSMiddleware,
