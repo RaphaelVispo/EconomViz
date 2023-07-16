@@ -19,6 +19,6 @@ COPY docker/nginx/templates/ /etc/nginx/templates
 EXPOSE 80
 
 # Set the env varible
-ENV LINEAR_REG_API=economviz.com
+ENV LINEAR_REG_API localhost
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]

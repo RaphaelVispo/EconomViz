@@ -20,4 +20,4 @@ docker-run:
 
 docker-frontend: 	
 	docker build -t economviz:frontend -f frontend/Dockerfile.prod ./frontend
-	docker run -d -p 80:80 frontend 
+	docker run -d -p 80:80 economviz:frontend
