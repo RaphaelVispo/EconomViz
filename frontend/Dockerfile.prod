@@ -19,8 +19,6 @@ COPY docker/nginx/templates/ /etc/nginx/templates
 COPY /docker/nginx/ssl /etc/nginx/certs
 # Expose port
 EXPOSE 80
-# exposing the ssl port
-EXPOSE 443
 
 # Set the env varible
 ENV LINEAR_REG_API localhost
