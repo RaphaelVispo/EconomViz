@@ -1,11 +1,9 @@
 
 server {
-    listen 443 ssl;
+    listen 80;
     index index.html;
 
     server_name         economviz.com;
-    ssl_certificate     /etc/nginx/certs/example.crt;
-    ssl_certificate_key /etc/nginx/certs/example.key;
 
     location / {
       root /usr/share/nginx/html;
