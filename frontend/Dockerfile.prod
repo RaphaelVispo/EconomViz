@@ -15,8 +15,6 @@ ENV NODE_ENV production
 COPY --from=builder /app/build /usr/share/nginx/html
 # Add your nginx.conf
 COPY docker/nginx/templates/ /etc/nginx/templates
-# Coppying the ssl
-COPY /docker/nginx/ssl /etc/nginx/certs
 # Expose port
 EXPOSE 80
 
